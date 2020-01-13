@@ -23,16 +23,20 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .menu-container {
   padding-top: 25px;
 }
 
-.header {
+.menu-container .header {
   display: flex;
   max-width: 88%;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 50px;
+}
+
+.menu-container .bm-burger-button {
+  right: 6% !important;
 }
 </style>
