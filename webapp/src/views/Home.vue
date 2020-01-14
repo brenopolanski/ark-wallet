@@ -9,15 +9,38 @@
         <button class="btn btn-search">Search Wallet</button>
       </div>
       <div class="flex flex-wrap justify-center items-center mt-10">
-        <button type="button" class="text-gray-500 inline-link">Choose Network: ARK | Mainnet</button>
+        <button
+          type="button"
+          class="text-gray-500 inline-link"
+          @click="openSettings()"
+        >Choose Network: ARK | Mainnet</button>
       </div>
     </form>
+    <Modal :is-open="isOpen" @close="closeSettings()"></Modal>
   </div>
 </template>
 
 <script>
+import Modal from '@/components/Modal';
+
 export default {
-  name: 'home'
+  name: 'home',
+  components: {
+    Modal
+  },
+  data() {
+    return {
+      isOpen: false
+    };
+  },
+  methods: {
+    openSettings() {
+      this.isOpen = true;
+    },
+    closeSettings() {
+      this.isOpen = false;
+    }
+  }
 };
 </script>
 
