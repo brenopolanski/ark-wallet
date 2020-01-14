@@ -36,7 +36,11 @@ export default {
   margin-bottom: 50px;
 }
 
-.menu-container .bm-burger-button {
+.bm-overlay {
+  background: #f5f5f5 !important;
+}
+
+.bm-burger-button {
   right: 6% !important;
 }
 </style>
