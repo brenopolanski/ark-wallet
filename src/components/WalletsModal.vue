@@ -20,6 +20,7 @@
             >Top</button>
           </div>
         </div>
+        <Alert class="mt-5" v-if="error" :msg="errorMsg" />
         <div class="mt-10">
           <loading
             loader="dots"
@@ -27,78 +28,31 @@
             :active.sync="loading"
             :is-full-page="loadingFullPage"
           />
-          <div class="flex border rounded p-2 mb-5">
-            <div class="w-5/6">
-              <div class="w-full truncate">
-                <span class="font-semibold mr-2">AUDud8tvyVZa67p3QY7XPRUTjRGnWQQ9Xv</span>
+          <div v-if="wallets.length === 0 && !loading" class="w-full text-center">No wallets found!</div>
+          <div v-if="wallets.length > 0 && !loading">
+            <div
+              v-for="wallet of wallets"
+              :key="wallet.address"
+              class="flex border rounded p-2 mb-5"
+            >
+              <div class="w-5/6">
+                <div class="w-full truncate">
+                  <span class="font-semibold mr-2">{{wallet.address}}</span>
+                </div>
+                <div class="w-full truncate">Ѧ {{wallet.balance}}</div>
               </div>
-              <div class="w-full truncate">Ѧ 1924102354890976</div>
-            </div>
-            <div class="w-1/6">
-              <div class="w-full h-full flex items-center justify-center">
-                <button type="button">
-                  <img src="@/assets/images/copy.svg" alt="Copy Button" />
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="flex border rounded p-2 mb-5">
-            <div class="w-5/6">
-              <div class="w-full truncate">
-                <span class="font-semibold mr-2">AUDud8tvyVZa67p3QY7XPRUTjRGnWQQ9Xv</span>
-              </div>
-              <div class="w-full truncate">Ѧ 1924102354890976</div>
-            </div>
-            <div class="w-1/6">
-              <div class="w-full h-full flex items-center justify-center">
-                <button type="button">
-                  <img src="@/assets/images/copy.svg" alt="Copy Button" />
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="flex border rounded p-2 mb-5">
-            <div class="w-5/6">
-              <div class="w-full truncate">
-                <span class="font-semibold mr-2">AUDud8tvyVZa67p3QY7XPRUTjRGnWQQ9Xv</span>
-              </div>
-              <div class="w-full truncate">Ѧ 1924102354890976</div>
-            </div>
-            <div class="w-1/6">
-              <div class="w-full h-full flex items-center justify-center">
-                <button type="button">
-                  <img src="@/assets/images/copy.svg" alt="Copy Button" />
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="flex border rounded p-2 mb-5">
-            <div class="w-5/6">
-              <div class="w-full truncate">
-                <span class="font-semibold mr-2">AUDud8tvyVZa67p3QY7XPRUTjRGnWQQ9Xv</span>
-              </div>
-              <div class="w-full truncate">Ѧ 1924102354890976</div>
-            </div>
-            <div class="w-1/6">
-              <div class="w-full h-full flex items-center justify-center">
-                <button type="button">
-                  <img src="@/assets/images/copy.svg" alt="Copy Button" />
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="flex border rounded p-2 mb-5">
-            <div class="w-5/6">
-              <div class="w-full truncate">
-                <span class="font-semibold mr-2">AUDud8tvyVZa67p3QY7XPRUTjRGnWQQ9Xv</span>
-              </div>
-              <div class="w-full truncate">Ѧ 1924102354890976</div>
-            </div>
-            <div class="w-1/6">
-              <div class="w-full h-full flex items-center justify-center">
-                <button type="button">
-                  <img src="@/assets/images/copy.svg" alt="Copy Button" />
-                </button>
+              <div class="w-1/6">
+                <div class="w-full h-full flex items-center justify-center">
+                  <button
+                    type="button"
+                    v-tooltip="'Copy'"
+                    v-clipboard:copy="wallet.address"
+                    v-clipboard:success="onCopy"
+                    v-clipboard:error="onCopyError"
+                  >
+                    <img src="@/assets/images/copy.svg" alt="Copy" />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -119,6 +73,7 @@
 <script>
 import axios from 'axios';
 import Loading from 'vue-loading-overlay';
+import Alert from './Alert';
 
 export default {
   name: 'walletsModal',
@@ -126,14 +81,17 @@ export default {
     isOpen: Boolean
   },
   components: {
-    Loading
+    Loading,
+    Alert
   },
   data() {
     return {
       wallets: [],
       fetchFor: 'all',
       loading: false,
-      loadingFullPage: false
+      loadingFullPage: false,
+      error: false,
+      errorMsg: ''
     };
   },
   mounted() {
@@ -141,22 +99,29 @@ export default {
   },
   methods: {
     handleCloseWalletsModal() {
-      this.fetchFor = 'all';
       this.$emit('closeWalletsModal');
     },
     handleFetchFor(value) {
       this.fetchFor = value;
+
+      if (value === 'all') {
+        this.loadAllWallets();
+      } else {
+        this.loadTopWallets();
+      }
     },
     async loadAllWallets() {
       try {
         this.loading = true;
+        this.error = false;
 
-        const response = await axios.get('https://dexplorer.ark.io/api/wallets');
+        const response = await axios.get('https://explorer.ark.io/api/wallets');
         const { data } = response.data;
 
         this.wallets = data;
       } catch (error) {
-        console.log(error);
+        this.error = true;
+        this.errorMsg = error.message;
       } finally {
         this.loading = false;
       }
@@ -164,16 +129,30 @@ export default {
     async loadTopWallets() {
       try {
         this.loading = true;
+        this.error = false;
 
         const response = await axios.get('https://explorer.ark.io/api/wallets/top');
         const { data } = response.data;
 
         this.wallets = data;
       } catch (error) {
-        console.log(error);
+        this.error = true;
+        this.errorMsg = error.message;
       } finally {
         this.loading = false;
       }
+    },
+    onCopy() {
+      this.$notify({
+        text: 'Copied!',
+        type: 'success'
+      });
+    },
+    onCopyError() {
+      this.$notify({
+        text: 'Failed to copy! Try again...',
+        type: 'error'
+      });
     }
   }
 };
