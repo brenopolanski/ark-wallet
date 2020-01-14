@@ -7,12 +7,12 @@
 }
 
 .btn-primary {
-  background: #fe463a;
+  background-color: #fe463a;
   color: #fff;
 }
 
 .btn-primary:hover {
-  background: #e1382d;
+  background-color: #e1382d;
 }
 
 .btn-secondary {
