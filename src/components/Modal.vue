@@ -9,7 +9,9 @@
       </div>
       <div class="modal-bottom">
         <div>
-          <span class="mr-3 block w-full text-sm font-bold text-gray-500">Network</span>
+          <span class="mr-3 block w-full text-sm font-bold text-gray-500"
+            >Network</span
+          >
           <div class="flex items-center">
             <div class="inline-block relative w-full sm:w-4/5 mr-3">
               <select
@@ -33,7 +35,9 @@
             <button
               class="light-button font-bold sm:w-1/5"
               @click.prevent="saveConfigFromNetwork"
-            >Save</button>
+            >
+              Save
+            </button>
           </div>
         </div>
       </div>

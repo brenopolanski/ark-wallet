@@ -13,7 +13,9 @@
           type="button"
           class="text-gray-500 inline-link"
           @click="openSettings()"
-        >Choose Network: ARK | Mainnet</button>
+        >
+          Choose Network: ARK | Mainnet
+        </button>
       </div>
     </form>
     <Modal :is-open="isOpen" @close="closeSettings()"></Modal>

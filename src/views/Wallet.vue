@@ -4,7 +4,9 @@
     <div class="wallet-container">
       <div class="flex justify-between">
         <h1 class="title">Wallet</h1>
-        <button type="button" class="text-gray-500 inline-link">Network: ARK | Mainnet</button>
+        <button type="button" class="text-gray-500 inline-link">
+          Network: ARK | Mainnet
+        </button>
       </div>
       <div class="wallet-info mt-5">
         <div class="flex flex-wrap">
@@ -13,7 +15,9 @@
               <span class="text-gray-600">Address</span>
             </div>
             <div class="flex w-full text-white truncate">
-              <span class="font-semibold mr-2">AUDud8tvyVZa67p3QY7XPRUTjRGnWQQ9Xv</span>
+              <span class="font-semibold mr-2"
+                >AUDud8tvyVZa67p3QY7XPRUTjRGnWQQ9Xv</span
+              >
               <button type="button" @click="doCopy">
                 <img src="../assets/images/copy.svg" alt="Copy Button" />
               </button>
@@ -33,7 +37,9 @@
             <div class="w-full h-full flex items-center justify-center">
               <button
                 class="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded"
-              >Show Public Key</button>
+              >
+                Show Public Key
+              </button>
             </div>
           </div>
         </div>
@@ -50,7 +56,9 @@
           <div class="row">
             <div class="cell" data-title="Name">Luke Peters</div>
             <div class="cell" data-title="Age">25</div>
-            <div class="cell" data-title="Occupation">Freelance Web Developer</div>
+            <div class="cell" data-title="Occupation">
+              Freelance Web Developer
+            </div>
             <div class="cell" data-title="Location">Brookline, MA</div>
           </div>
 
@@ -64,7 +72,9 @@
           <div class="row">
             <div class="cell" data-title="Name">Maxwell Johnson</div>
             <div class="cell" data-title="Age">26</div>
-            <div class="cell" data-title="Occupation">UX Architect & Designer</div>
+            <div class="cell" data-title="Occupation">
+              UX Architect & Designer
+            </div>
             <div class="cell" data-title="Location">Arlington, MA</div>
           </div>
 
