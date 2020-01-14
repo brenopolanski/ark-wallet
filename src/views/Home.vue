@@ -5,17 +5,15 @@
       <h3>ARK Wallet</h3>
       <input placeholder="Enter wallet address or public key" />
       <div class="flex flex-col">
-        <button type="submit" class="btn btn-import">Import Wallet</button>
-        <button class="btn btn-search">Search Wallet</button>
+        <button type="submit" class="btn btn-primary mt-2">Import Wallet</button>
+        <button class="btn btn-secondary mt-2">Search Wallet</button>
       </div>
       <div class="flex flex-wrap justify-center items-center mt-10">
         <button
           type="button"
-          class="text-gray-500 inline-link"
+          class="text-gray-500 inline-link hover:underline"
           @click="openSettings()"
-        >
-          Choose Network: ARK | Mainnet
-        </button>
+        >Choose Network: ARK | Mainnet</button>
       </div>
     </form>
     <Modal :is-open="isOpen" @close="closeSettings()"></Modal>
@@ -49,23 +47,18 @@ export default {
 <style scoped>
 .home-container {
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @apply .flex .justify-center .items-center;
 }
 
 .home-container form {
   width: 100%;
   max-width: 300px;
-  display: flex;
-  flex-direction: column;
+  @apply .flex .flex-col;
 }
 
 .home-container form h3 {
-  text-align: center;
-  text-transform: uppercase;
-  font-weight: bold;
   margin: 10px 0;
+  @apply .font-bold .text-center .uppercase;
 }
 
 .home-container form input {
@@ -80,25 +73,5 @@ export default {
 
 .home-container form input::placeholder {
   color: #999;
-}
-
-.home-container form .btn {
-  margin-top: 10px;
-  border: 0;
-  border-radius: 4px;
-  height: 48px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.home-container form .btn-import {
-  background: #e1382d;
-  color: #fff;
-}
-
-.home-container form .btn-search {
-  background: #e2e8f0;
-  color: #2d3748;
 }
 </style>

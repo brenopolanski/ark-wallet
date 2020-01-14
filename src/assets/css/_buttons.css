@@ -1,0 +1,25 @@
+.btn {
+  height: 48px;
+  border: 0;
+  border-radius: 4px;
+  font-size: 16px;
+  @apply .font-bold .cursor-pointer
+}
+
+.btn-primary {
+  background: #fe463a;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: #e1382d;
+}
+
+.btn-secondary {
+  color: #2d3748;
+  @apply .bg-gray-300
+}
+
+.btn-secondary:hover {
+  @apply .bg-gray-400
+}
