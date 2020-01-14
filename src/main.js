@@ -5,7 +5,9 @@ import router from './router';
 import store from './store';
 import './registerServiceWorker';
 
+// Styles
 import '@/assets/css/tailwind.css';
+import 'vue-loading-overlay/dist/vue-loading.css';
 
 Vue.use(VueClipboard);
 
