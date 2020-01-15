@@ -86,7 +86,7 @@ export default {
           const response = await axios.get(`${this.apiUrl}/wallets/${this.walletAddress}`);
           const { data } = response.data;
 
-          this.importWallet(data);
+          this.importWallet(JSON.stringify(data));
           this.$router.push({ path: `/wallets/${this.walletAddress}` });
         } else {
           this.$toast.error('Enter wallet address or public key', {

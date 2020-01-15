@@ -6,38 +6,7 @@
         <h1 class="title">Wallet Summary</h1>
         <button type="button" class="text-gray-500 inline-link">Network: ARK | Mainnet</button>
       </div>
-      <div class="wallet-info mt-5">
-        <div class="flex flex-wrap">
-          <div class="w-full sm:w-3/6 md:w-3/6 lg:w-3/6 xl:w-3/6 pr-8">
-            <div class="w-full mb-2">
-              <span class="text-gray-600">Address</span>
-            </div>
-            <div class="flex w-full text-white truncate">
-              <span class="font-semibold mr-2">AUDud8tvyVZa67p3QY7XPRUTjRGnWQQ9Xv</span>
-              <button type="button" @click="doCopy">
-                <img src="../assets/images/copy.svg" alt="Copy Button" />
-              </button>
-            </div>
-          </div>
-          <div class="w-full sm:w-2/6 md:w-2/6 lg:w-2/6 xl:w-2/6 pr-8">
-            <div class="w-full mb-2">
-              <span class="text-gray-600">Balance (ARK)</span>
-            </div>
-            <div class="w-full text-white truncate">
-              <span class="font-semibold">19,241,023.54890976</span>
-            </div>
-          </div>
-          <div
-            class="w-full sm:w-1/6 md:w-1/6 lg:w-1/6 xl:w-1/6 hidden sm:hidden md:block lg:block xl:block"
-          >
-            <div class="w-full h-full flex items-center justify-center">
-              <button
-                class="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded"
-              >Show Public Key</button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <WalletDetails :wallet="wallet" />
       <div class="wallet-transactions mt-5">
         <div class="table">
           <div class="row header">
@@ -81,32 +50,23 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import Header from '@/components/Header';
+import { WalletDetails } from '@/components/wallet';
 
 export default {
   name: 'Wallet',
   components: {
-    Header
+    Header,
+    WalletDetails
   },
-  data: function() {
-    return {
-      message: 'Copy These Text 123'
-    };
-  },
-  methods: {
-    doCopy: function() {
-      this.$copyText(this.message).then(
-        function(e) {
-          alert('Copied');
-          console.log(e);
-        },
-        function(e) {
-          alert('Can not copy');
-          console.log(e);
-        }
-      );
+  computed: {
+    ...mapState(['wallet']),
+    addressParam() {
+      return this.$route.params.address;
     }
-  }
+  },
+  mounted() {}
 };
 </script>
 

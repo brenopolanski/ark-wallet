@@ -2,7 +2,6 @@
   <div class="menu-container">
     <Slide right>
       <a href="#">
-        <font-awesome-icon icon="user-secret" />
         <span>Favourites</span>
       </a>
     </Slide>

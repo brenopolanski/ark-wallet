@@ -36,7 +36,7 @@ export default new Vuex.Store({
       state.network = payload.value;
     },
     [types.IMPORT_WALLET](state, payload) {
-      state.wallet = payload.value;
+      state.wallet = JSON.parse(payload.value);
     }
   }
 });

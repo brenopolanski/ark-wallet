@@ -53,7 +53,7 @@
                     v-clipboard:success="onCopy"
                     v-clipboard:error="onCopyError"
                   >
-                    <img src="@/assets/images/copy.svg" alt="Copy" />
+                    <img src="@/assets/images/copy.svg" alt="Copy button" />
                   </button>
                 </div>
               </div>
