@@ -1,4 +1,6 @@
 @import './_tailwind.css';
+@import './_variables.css';
+@import './_base.css';
 @import './_progress-bar.css';
 @import './_buttons.css';
 @import './_tooltip.css';
