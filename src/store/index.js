@@ -10,8 +10,8 @@ export default new Vuex.Store({
     network: constants.DEFAULT_NETWORK
   },
   getters: {
-    api_url: state => {
-      return state.network === 'mainnet'
+    apiUrl: state => {
+      return state.network === constants.DEFAULT_NETWORK
         ? constants.MAINNET_API_URL
         : constants.DEVNET_API_URL;
     }

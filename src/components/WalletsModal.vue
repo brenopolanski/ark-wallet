@@ -28,7 +28,10 @@
             :active.sync="loading"
             :is-full-page="loadingFullPage"
           />
-          <div v-if="wallets.length === 0 && !loading" class="w-full text-center">No wallets found!</div>
+          <div
+            v-if="wallets.length === 0 && !loading && !error"
+            class="w-full text-center"
+          >No wallets found!</div>
           <div v-if="wallets.length > 0 && !loading">
             <div
               v-for="wallet of wallets"
@@ -75,11 +78,11 @@ import axios from 'axios';
 import Loading from 'vue-loading-overlay';
 import { mapGetters } from 'vuex';
 import Alert from './Alert';
-import { readableCrypto } from '@/utils';
+import { axiosHandleErrors, readableCrypto } from '@/utils';
 import * as constants from '@/utils/constants';
 
 export default {
-  name: 'walletsModal',
+  name: 'WalletsModal',
   props: {
     isOpen: Boolean
   },
@@ -98,7 +101,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['api_url']),
+    ...mapGetters(['apiUrl']),
     arkIcon: () => constants.ARK_ICON
   },
   mounted() {
@@ -125,13 +128,13 @@ export default {
         this.loading = true;
         this.error = false;
 
-        const response = await axios.get(`${this.api_url}/wallets`);
+        const response = await axios.get(`${this.apiUrl}/wallets`);
         const { data } = response.data;
 
         this.wallets = data;
       } catch (error) {
         this.error = true;
-        this.errorMsg = error.message;
+        this.errorMsg = axiosHandleErrors(error);
       } finally {
         this.loading = false;
       }
@@ -141,13 +144,13 @@ export default {
         this.loading = true;
         this.error = false;
 
-        const response = await axios.get(`${this.api_url}/wallets/top`);
+        const response = await axios.get(`${this.apiUrl}/wallets/top`);
         const { data } = response.data;
 
         this.wallets = data;
       } catch (error) {
         this.error = true;
-        this.errorMsg = error.message;
+        this.errorMsg = axiosHandleErrors(error);
       } finally {
         this.loading = false;
       }

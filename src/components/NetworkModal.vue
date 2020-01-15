@@ -62,7 +62,7 @@ import { mapState, mapActions } from 'vuex';
 import * as constants from '@/utils/constants';
 
 export default {
-  name: 'networkModal',
+  name: 'NetworkModal',
   props: {
     isOpen: Boolean
   },

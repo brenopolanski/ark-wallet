@@ -6,25 +6,29 @@
       <input placeholder="Enter wallet address or public key" />
       <div class="flex flex-col">
         <button type="submit" class="btn btn-primary mt-2">Import Wallet</button>
-        <button type="button" class="btn btn-secondary mt-2" @click="openWalletsModal">Search Wallet</button>
+        <button
+          type="button"
+          class="btn btn-secondary mt-2"
+          @click="toggleWalletsModal"
+        >Search Wallet</button>
       </div>
       <div class="flex flex-wrap justify-center items-center mt-10">
         <button
           type="button"
           class="text-gray-500 inline-link hover:underline"
-          @click="openNetworkModal"
+          @click="toggleNetworkModal"
         >Choose Network: ARK | {{ selectedNetwork }}</button>
       </div>
     </form>
     <WalletsModal
-      v-if="isOpenWalletsModal"
-      :is-open="isOpenWalletsModal"
-      @closeWalletsModal="closeWalletsModal"
+      v-if="showWalletsModal"
+      :is-open="showWalletsModal"
+      @closeWalletsModal="toggleWalletsModal"
     />
     <NetworkModal
-      v-if="isOpenNetworkModal"
-      :is-open="isOpenNetworkModal"
-      @closeNetworkModal="closeNetworkModal"
+      v-if="showNetworkModal"
+      :is-open="showNetworkModal"
+      @closeNetworkModal="toggleNetworkModal"
     />
   </div>
 </template>
@@ -35,15 +39,15 @@ import WalletsModal from '@/components/WalletsModal';
 import NetworkModal from '@/components/NetworkModal';
 
 export default {
-  name: 'home',
+  name: 'Home',
   components: {
     WalletsModal,
     NetworkModal
   },
   data() {
     return {
-      isOpenWalletsModal: false,
-      isOpenNetworkModal: false
+      showWalletsModal: false,
+      showNetworkModal: false
     };
   },
   computed: {
@@ -53,17 +57,11 @@ export default {
     }
   },
   methods: {
-    openWalletsModal() {
-      this.isOpenWalletsModal = true;
+    toggleWalletsModal() {
+      this.showWalletsModal = !this.showWalletsModal;
     },
-    closeWalletsModal() {
-      this.isOpenWalletsModal = false;
-    },
-    openNetworkModal() {
-      this.isOpenNetworkModal = true;
-    },
-    closeNetworkModal() {
-      this.isOpenNetworkModal = false;
+    toggleNetworkModal() {
+      this.showNetworkModal = !this.showNetworkModal;
     }
   }
 };
