@@ -1,6 +1,6 @@
 <template>
   <div v-if="isOpen">
-    <div class="modal-backdrop" @click="handleCloseWalletsModal" />
+    <div class="modal-backdrop" @click="closeWalletsModal" />
     <div class="modal-content">
       <div class="modal-top">
         <span class="font-bold text-xl">Wallets</span>
@@ -58,7 +58,7 @@
           </div>
         </div>
       </div>
-      <div class="modal-close-button" @click="handleCloseWalletsModal">
+      <div class="modal-close-button" @click="closeWalletsModal">
         <svg width="15" height="15" viewBox="0 0 15 15" class="fill-current">
           <path
             d="M1764,6323.5l-1.5-1.5-6,6-6-6-1.5,1.5,6,6-6,6,1.5,1.5,6-6,6,6,1.5-1.5-6-6Z"
@@ -71,6 +71,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import axios from 'axios';
 import Loading from 'vue-loading-overlay';
 import Alert from './Alert';
@@ -94,11 +95,14 @@ export default {
       errorMsg: ''
     };
   },
+  computed: {
+    ...mapGetters(['api_url'])
+  },
   mounted() {
     this.loadAllWallets();
   },
   methods: {
-    handleCloseWalletsModal() {
+    closeWalletsModal() {
       this.$emit('closeWalletsModal');
     },
     handleFetchFor(value) {
@@ -115,7 +119,7 @@ export default {
         this.loading = true;
         this.error = false;
 
-        const response = await axios.get('https://explorer.ark.io/api/wallets');
+        const response = await axios.get(`${this.api_url}/wallets`);
         const { data } = response.data;
 
         this.wallets = data;
@@ -131,7 +135,7 @@ export default {
         this.loading = true;
         this.error = false;
 
-        const response = await axios.get('https://explorer.ark.io/api/wallets/top');
+        const response = await axios.get(`${this.api_url}/wallets/top`);
         const { data } = response.data;
 
         this.wallets = data;
@@ -157,7 +161,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .modal-backdrop {
   background-color: rgba(0, 0, 0, 0.4);
   @apply .w-screen .h-screen .fixed .left-0 .top-0 .z-10 .overflow-hidden;

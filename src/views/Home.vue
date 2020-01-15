@@ -9,25 +9,48 @@
         <button type="button" class="btn btn-secondary mt-2" @click="openWalletsModal">Search Wallet</button>
       </div>
       <div class="flex flex-wrap justify-center items-center mt-10">
-        <button type="button" class="text-gray-500 inline-link hover:underline">Choose Network: ARK | Mainnet</button>
+        <button
+          type="button"
+          class="text-gray-500 inline-link hover:underline"
+          @click="openNetworkModal"
+        >Choose Network: ARK | {{ selectedNetwork }}</button>
       </div>
     </form>
-    <WalletsModal :is-open="isOpenWalletsModal" @closeWalletsModal="closeWalletsModal" />
+    <WalletsModal
+      v-if="isOpenWalletsModal"
+      :is-open="isOpenWalletsModal"
+      @closeWalletsModal="closeWalletsModal"
+    />
+    <NetworkModal
+      v-if="isOpenNetworkModal"
+      :is-open="isOpenNetworkModal"
+      @closeNetworkModal="closeNetworkModal"
+    />
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import WalletsModal from '@/components/WalletsModal';
+import NetworkModal from '@/components/NetworkModal';
 
 export default {
   name: 'home',
   components: {
-    WalletsModal
+    WalletsModal,
+    NetworkModal
   },
   data() {
     return {
-      isOpenWalletsModal: false
+      isOpenWalletsModal: false,
+      isOpenNetworkModal: false
     };
+  },
+  computed: {
+    ...mapState(['network']),
+    selectedNetwork() {
+      return this.network.charAt(0).toUpperCase() + this.network.slice(1);
+    }
   },
   methods: {
     openWalletsModal() {
@@ -35,6 +58,12 @@ export default {
     },
     closeWalletsModal() {
       this.isOpenWalletsModal = false;
+    },
+    openNetworkModal() {
+      this.isOpenNetworkModal = true;
+    },
+    closeNetworkModal() {
+      this.isOpenNetworkModal = false;
     }
   }
 };
