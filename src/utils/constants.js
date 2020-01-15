@@ -1,4 +1,5 @@
-export const ARK_ICON = 'Ѧ';
+export const ARK_NAME = 'ARK';
+export const ARK_SYMBOL = 'Ѧ';
 export const LOCALE = navigator.language || 'en-GB';
 export const MAINNET_API_URL = 'https://explorer.ark.io/api';
 export const DEVNET_API_URL = 'https://dexplorer.ark.io/api';

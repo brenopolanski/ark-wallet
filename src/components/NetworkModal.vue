@@ -20,7 +20,7 @@
                   v-for="network of networks"
                   :value="network.value"
                   :key="network.label"
-                >ARK | {{ network.label.charAt(0).toUpperCase() + network.label.slice(1) }}</option>
+                >{{ arkName }} | {{ network.label.charAt(0).toUpperCase() + network.label.slice(1) }}</option>
               </select>
               <div
                 class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
@@ -73,7 +73,8 @@ export default {
     };
   },
   computed: {
-    ...mapState(['network'])
+    ...mapState(['network']),
+    arkName: () => constants.ARK_NAME
   },
   mounted() {
     this.selectedNetwork = this.network;

@@ -42,7 +42,7 @@
                 <div class="w-full truncate">
                   <span class="font-semibold mr-2">{{ wallet.address }}</span>
                 </div>
-                <div class="w-full truncate">{{ arkIcon }} {{ formatBalance(wallet.balance) }}</div>
+                <div class="w-full truncate">{{ arkSymbol }} {{ formatBalance(wallet.balance) }}</div>
               </div>
               <div class="w-1/6">
                 <div class="w-full h-full flex items-center justify-center">
@@ -102,7 +102,7 @@ export default {
   },
   computed: {
     ...mapGetters(['apiUrl']),
-    arkIcon: () => constants.ARK_ICON
+    arkSymbol: () => constants.ARK_SYMBOL
   },
   mounted() {
     this.loadAllWallets();
