@@ -1,3 +1,4 @@
+export const APP_TITLE = 'ARK Wallet';
 export const ARK_NAME = 'ARK';
 export const ARK_SYMBOL = 'Ѧ';
 export const LOCALE = navigator.language || 'en-GB';

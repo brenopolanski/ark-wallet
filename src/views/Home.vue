@@ -4,7 +4,7 @@
       <img src="@/assets/images/logo.svg" alt="Ark logo" />
       <h3>ARK Wallet</h3>
       <Alert class="mt-5" v-if="error" :msg="errorMsg" />
-      <input v-model="walletId" placeholder="Enter wallet address or public key" />
+      <input v-model="walletAddress" placeholder="Enter wallet address or public key" />
       <div class="flex flex-col">
         <button type="submit" class="btn btn-primary mt-2">Import Wallet</button>
         <button
@@ -54,7 +54,7 @@ export default {
   },
   data() {
     return {
-      walletId: '',
+      walletAddress: '',
       showWalletsModal: false,
       showNetworkModal: false,
       loading: false,
@@ -82,12 +82,12 @@ export default {
         this.loading = true;
         this.error = false;
 
-        if (!isEmpty(this.walletId)) {
-          const response = await axios.get(`${this.apiUrl}/wallets/${this.walletId}`);
+        if (!isEmpty(this.walletAddress)) {
+          const response = await axios.get(`${this.apiUrl}/wallets/${this.walletAddress}`);
           const { data } = response.data;
 
           this.importWallet(data);
-          this.$router.push({ path: `/wallets/${this.walletId}` });
+          this.$router.push({ path: `/wallets/${this.walletAddress}` });
         } else {
           this.$toast.error('Enter wallet address or public key', {
             position: 'top'

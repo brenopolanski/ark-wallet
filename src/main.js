@@ -8,9 +8,10 @@ import store from './store';
 import './registerServiceWorker';
 
 // Styles
-import '@/assets/css/tailwind.css';
 import 'vue-loading-overlay/dist/vue-loading.css';
 import 'vue-toast-notification/dist/index.css';
+import 'nprogress/nprogress.css';
+import '@/assets/css/main.css';
 
 Vue.use(VueClipboard);
 Vue.use(VueToast);
