@@ -39,7 +39,7 @@
                 <div class="w-full truncate">
                   <span class="font-semibold mr-2">{{ wallet.address }}</span>
                 </div>
-                <div class="w-full truncate">Ѧ {{ wallet.balance }}</div>
+                <div class="w-full truncate">{{ arkIcon }} {{ formatBalance(wallet.balance) }}</div>
               </div>
               <div class="w-1/6">
                 <div class="w-full h-full flex items-center justify-center">
@@ -71,10 +71,12 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
 import axios from 'axios';
 import Loading from 'vue-loading-overlay';
+import { mapGetters } from 'vuex';
 import Alert from './Alert';
+import { readableCrypto } from '@/utils';
+import * as constants from '@/utils/constants';
 
 export default {
   name: 'walletsModal',
@@ -88,7 +90,7 @@ export default {
   data() {
     return {
       wallets: [],
-      fetchFor: 'all',
+      fetchFor: 'all', // 'all' or 'top' wallets
       loading: false,
       loadingFullPage: false,
       error: false,
@@ -96,7 +98,8 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['api_url'])
+    ...mapGetters(['api_url']),
+    arkIcon: () => constants.ARK_ICON
   },
   mounted() {
     this.loadAllWallets();
@@ -104,6 +107,9 @@ export default {
   methods: {
     closeWalletsModal() {
       this.$emit('closeWalletsModal');
+    },
+    formatBalance(value) {
+      return readableCrypto(value);
     },
     handleFetchFor(value) {
       this.fetchFor = value;

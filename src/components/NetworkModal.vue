@@ -59,6 +59,7 @@
 
 <script>
 import { mapState, mapActions } from 'vuex';
+import * as constants from '@/utils/constants';
 
 export default {
   name: 'networkModal',
@@ -67,11 +68,8 @@ export default {
   },
   data() {
     return {
-      networks: [
-        { value: 'mainnet', label: 'mainnet' },
-        { value: 'devnet', label: 'devnet' }
-      ],
-      selectedNetwork: 'mainnet'
+      networks: constants.NETWORKS,
+      selectedNetwork: constants.DEFAULT_NETWORK
     };
   },
   computed: {

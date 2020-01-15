@@ -1,18 +1,19 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import * as types from './types';
+import * as constants from '@/utils/constants';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    network: 'mainnet'
+    network: constants.DEFAULT_NETWORK
   },
   getters: {
     api_url: state => {
       return state.network === 'mainnet'
-        ? 'https://explorer.ark.io/api'
-        : 'https://dexplorer.ark.io/api';
+        ? constants.MAINNET_API_URL
+        : constants.DEVNET_API_URL;
     }
   },
   actions: {
