@@ -77,7 +77,7 @@
 import axios from 'axios';
 import Loading from 'vue-loading-overlay';
 import { mapGetters } from 'vuex';
-import Alert from './Alert';
+import Alert from '@/components/Alert';
 import { axiosHandleErrors, readableCrypto } from '@/utils';
 import * as constants from '@/utils/constants';
 

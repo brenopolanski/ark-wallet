@@ -1,9 +1,10 @@
 <template>
   <div class="home-container">
-    <form>
+    <form @submit.prevent="handleSubmit" v-show="!loading">
       <img src="@/assets/images/logo.svg" alt="Ark logo" />
       <h3>ARK Wallet</h3>
-      <input placeholder="Enter wallet address or public key" />
+      <Alert class="mt-5" v-if="error" :msg="errorMsg" />
+      <input v-model="walletId" placeholder="Enter wallet address or public key" />
       <div class="flex flex-col">
         <button type="submit" class="btn btn-primary mt-2">Import Wallet</button>
         <button
@@ -20,6 +21,7 @@
         >Choose Network: ARK | {{ selectedNetwork }}</button>
       </div>
     </form>
+    <loading loader="dots" color="#fe463a" :active.sync="loading" />
     <WalletsModal
       v-if="showWalletsModal"
       :is-open="showWalletsModal"
@@ -34,34 +36,69 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import axios from 'axios';
+import Loading from 'vue-loading-overlay';
+import { mapState, mapGetters, mapActions } from 'vuex';
+import Alert from '@/components/Alert';
 import WalletsModal from '@/components/WalletsModal';
 import NetworkModal from '@/components/NetworkModal';
+import { axiosHandleErrors, isEmpty } from '@/utils';
 
 export default {
   name: 'Home',
   components: {
+    Loading,
+    Alert,
     WalletsModal,
     NetworkModal
   },
   data() {
     return {
+      walletId: '',
       showWalletsModal: false,
-      showNetworkModal: false
+      showNetworkModal: false,
+      loading: false,
+      error: false,
+      errorMsg: ''
     };
   },
   computed: {
     ...mapState(['network']),
+    ...mapGetters(['apiUrl']),
     selectedNetwork() {
       return this.network.charAt(0).toUpperCase() + this.network.slice(1);
     }
   },
   methods: {
+    ...mapActions(['importWallet']),
     toggleWalletsModal() {
       this.showWalletsModal = !this.showWalletsModal;
     },
     toggleNetworkModal() {
       this.showNetworkModal = !this.showNetworkModal;
+    },
+    async handleSubmit() {
+      try {
+        this.loading = true;
+        this.error = false;
+
+        if (!isEmpty(this.walletId)) {
+          const response = await axios.get(`${this.apiUrl}/wallets/${this.walletId}`);
+          const { data } = response.data;
+
+          this.importWallet(data);
+          this.$router.push({ path: `/wallets/${this.walletId}` });
+        } else {
+          this.$toast.error('Enter wallet address or public key', {
+            position: 'top'
+          });
+        }
+      } catch (error) {
+        this.error = true;
+        this.errorMsg = axiosHandleErrors(error);
+      } finally {
+        this.loading = false;
+      }
     }
   }
 };

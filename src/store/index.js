@@ -7,7 +7,8 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    network: constants.DEFAULT_NETWORK
+    network: constants.DEFAULT_NETWORK,
+    wallet: {}
   },
   getters: {
     apiUrl: state => {
@@ -22,11 +23,20 @@ export default new Vuex.Store({
         type: types.SET_NETWORK,
         value
       });
+    },
+    importWallet({ commit }, value) {
+      commit({
+        type: types.IMPORT_WALLET,
+        value
+      });
     }
   },
   mutations: {
     [types.SET_NETWORK](state, payload) {
       state.network = payload.value;
+    },
+    [types.IMPORT_WALLET](state, payload) {
+      state.wallet = payload.value;
     }
   }
 });
