@@ -1,12 +1,10 @@
 <template>
   <div>
-    <Menu />
+    <Header />
     <div class="wallet-container">
       <div class="flex justify-between">
-        <h1 class="title">Wallet</h1>
-        <button type="button" class="text-gray-500 inline-link">
-          Network: ARK | Mainnet
-        </button>
+        <h1 class="title">Wallet Summary</h1>
+        <button type="button" class="text-gray-500 inline-link">Network: ARK | Mainnet</button>
       </div>
       <div class="wallet-info mt-5">
         <div class="flex flex-wrap">
@@ -29,13 +27,13 @@
               <span class="font-semibold">19,241,023.54890976</span>
             </div>
           </div>
-          <div class="w-full sm:w-1/6 md:w-1/6 lg:w-1/6 xl:w-1/6 hidden sm:hidden md:block lg:block xl:block">
+          <div
+            class="w-full sm:w-1/6 md:w-1/6 lg:w-1/6 xl:w-1/6 hidden sm:hidden md:block lg:block xl:block"
+          >
             <div class="w-full h-full flex items-center justify-center">
               <button
                 class="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded"
-              >
-                Show Public Key
-              </button>
+              >Show Public Key</button>
             </div>
           </div>
         </div>
@@ -52,9 +50,7 @@
           <div class="row">
             <div class="cell" data-title="Name">Luke Peters</div>
             <div class="cell" data-title="Age">25</div>
-            <div class="cell" data-title="Occupation">
-              Freelance Web Developer
-            </div>
+            <div class="cell" data-title="Occupation">Freelance Web Developer</div>
             <div class="cell" data-title="Location">Brookline, MA</div>
           </div>
 
@@ -68,9 +64,7 @@
           <div class="row">
             <div class="cell" data-title="Name">Maxwell Johnson</div>
             <div class="cell" data-title="Age">26</div>
-            <div class="cell" data-title="Occupation">
-              UX Architect & Designer
-            </div>
+            <div class="cell" data-title="Occupation">UX Architect & Designer</div>
             <div class="cell" data-title="Location">Arlington, MA</div>
           </div>
 
@@ -87,12 +81,12 @@
 </template>
 
 <script>
-import Menu from '@/components/Menu';
+import Header from '@/components/Header';
 
 export default {
-  name: 'wallet',
+  name: 'Wallet',
   components: {
-    Menu
+    Header
   },
   data: function() {
     return {
