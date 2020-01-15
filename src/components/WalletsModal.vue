@@ -37,9 +37,9 @@
             >
               <div class="w-5/6">
                 <div class="w-full truncate">
-                  <span class="font-semibold mr-2">{{wallet.address}}</span>
+                  <span class="font-semibold mr-2">{{ wallet.address }}</span>
                 </div>
-                <div class="w-full truncate">Ѧ {{wallet.balance}}</div>
+                <div class="w-full truncate">Ѧ {{ wallet.balance }}</div>
               </div>
               <div class="w-1/6">
                 <div class="w-full h-full flex items-center justify-center">
@@ -143,15 +143,14 @@ export default {
       }
     },
     onCopy() {
-      this.$notify({
-        text: 'Copied!',
-        type: 'success'
+      this.$toast.success('Copied!', {
+        duration: 1000,
+        position: 'top'
       });
     },
     onCopyError() {
-      this.$notify({
-        text: 'Failed to copy! Try again...',
-        type: 'error'
+      this.$toast.error('Failed to copy! Try again...', {
+        position: 'top'
       });
     }
   }

@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueClipboard from 'vue-clipboard2';
-import Notifications from 'vue-notification';
+import VueToast from 'vue-toast-notification';
 import VTooltip from 'v-tooltip';
 import App from './App.vue';
 import router from './router';
@@ -10,9 +10,10 @@ import './registerServiceWorker';
 // Styles
 import '@/assets/css/tailwind.css';
 import 'vue-loading-overlay/dist/vue-loading.css';
+import 'vue-toast-notification/dist/index.css';
 
 Vue.use(VueClipboard);
-Vue.use(Notifications);
+Vue.use(VueToast);
 Vue.use(VTooltip);
 
 Vue.config.productionTip = false;

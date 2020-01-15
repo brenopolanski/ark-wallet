@@ -9,33 +9,18 @@
       </div>
       <div class="modal-bottom">
         <div>
-          <span class="mr-3 block w-full text-sm font-bold text-gray-500"
-            >Network</span
-          >
+          <span class="mr-3 block w-full text-sm font-bold text-gray-500">Network</span>
           <div class="flex items-center">
             <div class="inline-block relative w-full sm:w-4/5 mr-3">
-              <select
-                class="hover:border-gray-500 focus:outline-none focus:shadow-outline container-inputs"
-              ></select>
-              <div
-                class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
-              >
-                <svg
-                  class="fill-current h-4 w-4"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
-                  />
+              <select class="hover:border-gray-500 focus:outline-none focus:shadow-outline container-inputs"></select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                  <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                 </svg>
               </div>
             </div>
 
-            <button
-              class="light-button font-bold sm:w-1/5"
-              @click.prevent="saveConfigFromNetwork"
-            >
+            <button class="light-button font-bold sm:w-1/5" @click.prevent="saveConfigFromNetwork">
               Save
             </button>
           </div>

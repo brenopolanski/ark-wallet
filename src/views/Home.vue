@@ -9,10 +9,7 @@
         <button type="button" class="btn btn-secondary mt-2" @click="openWalletsModal">Search Wallet</button>
       </div>
       <div class="flex flex-wrap justify-center items-center mt-10">
-        <button
-          type="button"
-          class="text-gray-500 inline-link hover:underline"
-        >Choose Network: ARK | Mainnet</button>
+        <button type="button" class="text-gray-500 inline-link hover:underline">Choose Network: ARK | Mainnet</button>
       </div>
     </form>
     <WalletsModal :is-open="isOpenWalletsModal" @closeWalletsModal="closeWalletsModal" />

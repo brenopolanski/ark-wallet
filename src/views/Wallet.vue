@@ -15,9 +15,7 @@
               <span class="text-gray-600">Address</span>
             </div>
             <div class="flex w-full text-white truncate">
-              <span class="font-semibold mr-2"
-                >AUDud8tvyVZa67p3QY7XPRUTjRGnWQQ9Xv</span
-              >
+              <span class="font-semibold mr-2">AUDud8tvyVZa67p3QY7XPRUTjRGnWQQ9Xv</span>
               <button type="button" @click="doCopy">
                 <img src="../assets/images/copy.svg" alt="Copy Button" />
               </button>
@@ -31,9 +29,7 @@
               <span class="font-semibold">19,241,023.54890976</span>
             </div>
           </div>
-          <div
-            class="w-full sm:w-1/6 md:w-1/6 lg:w-1/6 xl:w-1/6 hidden sm:hidden md:block lg:block xl:block"
-          >
+          <div class="w-full sm:w-1/6 md:w-1/6 lg:w-1/6 xl:w-1/6 hidden sm:hidden md:block lg:block xl:block">
             <div class="w-full h-full flex items-center justify-center">
               <button
                 class="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded"

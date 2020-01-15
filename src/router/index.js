@@ -16,8 +16,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (wallet.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: 'wallet' */ '../views/Wallet.vue')
+    component: () => import(/* webpackChunkName: 'wallet' */ '../views/Wallet.vue')
   }
 ];
 
