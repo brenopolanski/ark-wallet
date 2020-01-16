@@ -16,22 +16,12 @@
         <div class="cell" data-title="Rank">{{ delegate.rank }}</div>
         <div class="cell" data-title="Username">{{ delegate.username }}</div>
         <div class="cell" data-title="Forged blocks">{{ formatNumber(delegate.blocks.produced) }}</div>
-        <div
-          class="cell"
-          data-title="Last forged"
-        >{{ formatTimestampAgo(delegate.blocks.last.timestamp.unix) }}</div>
+        <div class="cell" data-title="Last forged">{{ formatTimestampAgo(delegate.blocks.last.timestamp.unix) }}</div>
         <div class="cell" data-title="Status">
-          <img
-            class="active-icon mx-auto"
-            width="19"
-            src="@/assets/images/active.svg"
-            alt="Active icon"
-          />
+          <img class="active-icon mx-auto" width="19" src="@/assets/images/active.svg" alt="Active icon" />
         </div>
         <div class="cell" data-title="Votes">
-          <span
-            class="text-xs text-gray-600"
-          >{{ formatStringToPercentage(delegate.production.approval) }}</span>
+          <span class="text-xs text-gray-600">{{ formatStringToPercentage(delegate.production.approval) }}</span>
           {{ formatCryptoValue(delegate.votes) }} {{ arkSymbol }}
         </div>
       </div>

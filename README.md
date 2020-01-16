@@ -4,9 +4,9 @@
 
 > ARK wallet challenge assignment
 
-[![ark-wallet](./screenshots/web1.png)](http://arkwallet.netlify.com/)
+[![ark-wallet](./screenshots/web5.png)](http://arkwallet.netlify.com/)
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/d4947717-7997-417c-8f7e-cf589654b03a/deploy-status)](https://app.netlify.com/sites/arkwallet/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/d4947717-7997-417c-8f7e-cf589654b03a/deploy-status)](http://arkwallet.netlify.com)
 
 ### **Try the demo** → http://arkwallet.netlify.com
 
@@ -52,6 +52,26 @@ $ yarn lint
 | [niceware](https://github.com/diracdeltas/niceware) | Generate or convert random bytes into passphrases in Node and the browser. |
 | [bignumber.js](https://github.com/MikeMcl/bignumber.js/) | A JavaScript library for arbitrary-precision decimal and non-decimal arithmetic. |
 | [@arkecosystem/crypto](https://www.npmjs.com/package/@arkecosystem/crypto) | ARK - Crypto |
+
+## Screenshots
+
+### Web
+
+| <img src="./screenshots/web1.png" width="440" height="247"> | <img src="./screenshots/web2.png" width="440" height="247"> |
+| :---------------------------------------------------------: | :---------------------------------------------------------: |
+|                      **Import Wallet**                      |                   **Search Wallet Modal**                   |
+
+| <img src="./screenshots/web3.png" width="440" height="247"> | <img src="./screenshots/web4.png" width="440" height="247"> |
+| :---------------------------------------------------------: | :---------------------------------------------------------: |
+|                 **Network Settings Modal**                  |                    **Wallet Summary 1**                     |
+
+| <img src="./screenshots/web5.png" width="440" height="247"> | <img src="./screenshots/web6.png" width="440" height="247"> |
+| :---------------------------------------------------------: | :---------------------------------------------------------: |
+|                    **Wallet Summary 2**                     |                          **Menu**                           |
+
+| <img src="./screenshots/web7.png" width="440" height="247"> | <img src="./screenshots/web8.png" width="440" height="247"> |
+| :---------------------------------------------------------: | :---------------------------------------------------------: |
+|                  **Generate Wallet Modal**                  |                        **Delegates**                        |
 
 ## Contributing
 
