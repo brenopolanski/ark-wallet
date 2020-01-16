@@ -31,7 +31,7 @@
           <div
             v-if="wallets.length === 0 && !loading && !error"
             class="w-full text-center"
-          >No wallets found!</div>
+          >No wallets found</div>
           <div v-if="wallets.length > 0 && !loading">
             <div
               v-for="wallet of wallets"
@@ -75,8 +75,8 @@
 
 <script>
 import axios from 'axios';
-import Loading from 'vue-loading-overlay';
 import { mapGetters } from 'vuex';
+import Loading from 'vue-loading-overlay';
 import Alert from '@/components/Alert';
 import { axiosHandleErrors, readableCrypto } from '@/utils';
 import * as constants from '@/utils/constants';

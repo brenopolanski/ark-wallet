@@ -1,3 +1,4 @@
 import WalletDetails from './WalletDetails';
+import WalletTransactions from './WalletTransactions';
 
-export { WalletDetails };
+export { WalletDetails, WalletTransactions };

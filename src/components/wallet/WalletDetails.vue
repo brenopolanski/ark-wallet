@@ -100,7 +100,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .wallet-details {
   background: #333;
   padding: 30px;
