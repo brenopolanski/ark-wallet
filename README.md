@@ -28,6 +28,14 @@ $ yarn build
 $ yarn lint
 ```
 
+## Technologies
+
+| **Tech** | **Description** |
+|----------|-----------------|
+| [Vue.js](https://vuejs.org/) | The Progressive JavaScript Framework. |
+| [Vue Router](https://router.vuejs.org/) | Vue Router is the official router for Vue.js. |
+| [Vuex](https://vuex.vuejs.org/) | Vuex is a state management pattern + library for Vue.js applications. |
+
 ## Contributing
 
 If you want to help, please read the [Contributing](./CONTRIBUTING.md) guide.
