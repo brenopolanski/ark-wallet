@@ -15,9 +15,11 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import axios from 'axios';
+import { mapState, mapGetters, mapActions } from 'vuex';
 import Header from '@/components/Header';
 import { WalletDetails, WalletTransactions } from '@/components/wallet';
+import { axiosHandleErrors } from '@/utils';
 import * as constants from '@/utils/constants';
 
 export default {
@@ -29,6 +31,7 @@ export default {
   },
   computed: {
     ...mapState(['network', 'wallet']),
+    ...mapGetters(['apiUrl', 'walletIsEmpty']),
     arkName: () => constants.ARK_NAME,
     selectedNetwork() {
       return this.network.charAt(0).toUpperCase() + this.network.slice(1);
@@ -37,7 +40,26 @@ export default {
       return this.$route.params.address;
     }
   },
-  mounted() {}
+  mounted() {
+    if (this.walletIsEmpty) {
+      this.loadWalletFromAddressParam();
+    }
+  },
+  methods: {
+    ...mapActions(['importWallet']),
+    async loadWalletFromAddressParam() {
+      try {
+        const response = await axios.get(`${this.apiUrl}/wallets/${this.addressParam}`);
+        const { data } = response.data;
+
+        this.importWallet(data);
+      } catch (error) {
+        this.$toast.error(axiosHandleErrors(error), {
+          position: 'top'
+        });
+      }
+    }
+  }
 };
 </script>
 

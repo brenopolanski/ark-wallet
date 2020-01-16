@@ -15,7 +15,8 @@ export default new Vuex.Store({
       return state.network === constants.DEFAULT_NETWORK
         ? constants.MAINNET_API_URL
         : constants.DEVNET_API_URL;
-    }
+    },
+    walletIsEmpty: state => !state.wallet.hasOwnProperty('address')
   },
   actions: {
     setNetwork({ commit }, value) {
@@ -36,7 +37,7 @@ export default new Vuex.Store({
       state.network = payload.value;
     },
     [types.IMPORT_WALLET](state, payload) {
-      state.wallet = JSON.parse(payload.value);
+      state.wallet = payload.value;
     }
   }
 });

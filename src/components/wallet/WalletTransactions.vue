@@ -19,7 +19,7 @@
         <div class="cell truncate" data-title="Sender">{{ transaction.sender }}</div>
         <div class="cell truncate" data-title="Recipient">{{ transaction.recipient }}</div>
         <div
-          class="cell"
+          class="cell text-red-600"
           data-title="Amount"
         >{{ formatCryptoValue(transaction.amount) }} {{arkSymbol}}</div>
         <div class="cell" data-title="Fee">{{ formatCryptoValue(transaction.fee) }} {{arkSymbol}}</div>
@@ -73,10 +73,12 @@ export default {
         this.loading = true;
         this.error = false;
 
-        const response = await axios.get(`${this.apiUrl}/wallets/${this.wallet.address}/transactions`);
-        const { data } = response.data;
+        if (this.wallet.address) {
+          const response = await axios.get(`${this.apiUrl}/wallets/${this.wallet.address}/transactions`);
+          const { data } = response.data;
 
-        this.transactions = data;
+          this.transactions = data;
+        }
       } catch (error) {
         this.error = true;
         this.errorMsg = axiosHandleErrors(error);
