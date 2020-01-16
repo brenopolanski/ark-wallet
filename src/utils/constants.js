@@ -11,3 +11,4 @@ export const NETWORKS = [
   { value: DEFAULT_NETWORK, label: DEFAULT_NETWORK },
   { value: 'devnet', label: 'devnet' }
 ];
+export const ACTIVE_DELEGATES_SIZE = 51;

@@ -8,6 +8,7 @@ import * as constants from '@/utils/constants';
 // which is lazy-loaded when the route is visited.
 const Home = () => import(/* webpackChunkName: "home" */ '@/views/Home.vue');
 const WalletComponent = () => import(/* webpackChunkName: "wallet" */ '@/views/Wallet.vue');
+const DelegatesComponent = () => import(/* webpackChunkName: "delegates" */ '@/views/Delegates.vue');
 const NotFoundComponent = () => import(/* webpackChunkName: "404" */ '@/views/NotFound.vue');
 
 Vue.use(Router);
@@ -31,6 +32,12 @@ const router = new Router({
       name: 'wallet',
       component: WalletComponent,
       meta: { title: route => getTitle(`Wallet ${route.params.address}`) }
+    },
+    {
+      path: '/delegates',
+      name: 'delegates',
+      component: DelegatesComponent,
+      meta: { title: () => getTitle('Delegates') }
     },
     {
       path: '/404',

@@ -1,5 +1,5 @@
 <template>
-  <section class="wallet-details mt-5">
+  <section class="wallet-details-container mt-5">
     <div class="flex flex-wrap">
       <div v-if="!showPublicKey" class="w-full sm:w-3/6 md:w-3/6 lg:w-3/6 xl:w-3/6 pr-8">
         <div class="w-full mb-2">
@@ -101,7 +101,7 @@ export default {
 </script>
 
 <style scoped>
-.wallet-details {
+.wallet-details-container {
   background: #333;
   padding: 30px;
   border-radius: 5px;

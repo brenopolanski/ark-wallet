@@ -1,6 +1,8 @@
+import moment from 'moment';
 import { BigNumber } from './BigNumber';
 import { readableCrypto } from './currency';
 import { generateWallet } from './crypto';
+import * as constants from './constants';
 
 // Reference: https://github.com/axios/axios#handling-errors
 const axiosHandleErrors = error => {
@@ -38,4 +40,44 @@ const isEmpty = value => {
     (typeof value === 'string' && value.trim().length === 0);
 };
 
-export { axiosHandleErrors, BigNumber, generateWallet, isEmpty, readableCrypto };
+const percentageString = (value, decimals = 2) => {
+  if (typeof value !== 'undefined') {
+    return (value / 100).toLocaleString(constants.LOCALE, {
+      minimumFractionDigits: decimals,
+      maximumFractionDigits: decimals,
+      style: 'percent'
+    });
+  }
+
+  return '-';
+};
+
+const readableNumber = (value, digits = 0, omitSeparator = false) => {
+  if (omitSeparator) {
+    return value.toFixed(digits);
+  }
+
+  return value.toLocaleString(constants.LOCALE, {
+    minimumFractionDigits: digits,
+    maximumFractionDigits: digits
+  });
+};
+
+const readableTimestampAgo = (time, compareTime) => {
+  const momentTime = moment.unix(time).local();
+
+  return typeof compareTime !== 'undefined'
+    ? momentTime.from(moment.unix(compareTime).local())
+    : momentTime.fromNow();
+};
+
+export {
+  axiosHandleErrors,
+  BigNumber,
+  generateWallet,
+  isEmpty,
+  percentageString,
+  readableCrypto,
+  readableNumber,
+  readableTimestampAgo
+};

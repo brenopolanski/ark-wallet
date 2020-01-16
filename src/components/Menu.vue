@@ -1,12 +1,18 @@
 <template>
   <div class="menu-container">
     <Slide right>
-      <router-link to="/">
+      <router-link :to="`/wallets/${walletAddress}`">
         <span class="text-lg hover:text-red-500">Home</span>
       </router-link>
       <a href="#" @click.prevent="toggleGenerateWalletModal">
         <span class="text-lg hover:text-red-500">Generate Wallet</span>
       </a>
+      <router-link to="/delegates">
+        <span class="text-lg hover:text-red-500">Delegates</span>
+      </router-link>
+      <router-link to="/">
+        <span class="text-lg hover:text-red-500">Exit</span>
+      </router-link>
     </Slide>
     <GenerateWalletModal
       v-if="showGenerateWalletModal"
@@ -18,6 +24,7 @@
 
 <script>
 import { Slide } from 'vue-burger-menu';
+import { mapState } from 'vuex';
 import GenerateWalletModal from '@/components/GenerateWalletModal';
 
 export default {
@@ -30,6 +37,12 @@ export default {
     return {
       showGenerateWalletModal: false
     };
+  },
+  computed: {
+    ...mapState(['wallet']),
+    walletAddress() {
+      return this.wallet.address;
+    }
   },
   methods: {
     toggleGenerateWalletModal() {

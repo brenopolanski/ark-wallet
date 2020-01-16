@@ -1,5 +1,5 @@
 <template>
-  <section class="wallet-transactions mt-5">
+  <section class="wallet-transactions-container mt-5">
     <loading loader="dots" color="#fe463a" :active.sync="loading" />
     <Alert class="mt-5" v-if="error" :msg="errorMsg" />
     <div
@@ -91,7 +91,7 @@ export default {
 </script>
 
 <style scoped>
-.wallet-transactions {
+.wallet-transactions-container {
   background: #fff;
   padding: 30px;
   border-radius: 5px;
