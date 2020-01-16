@@ -1,4 +1,6 @@
-# ѦRK wallet challenge
+<h1 align="center">
+  <img src="./src/assets/images/ark-side.png" width="200" />
+</h1>
 
 ## Project setup
 ```
