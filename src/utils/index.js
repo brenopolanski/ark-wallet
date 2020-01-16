@@ -1,5 +1,6 @@
 import { BigNumber } from './BigNumber';
 import { readableCrypto } from './currency';
+import { generateWallet } from './crypto';
 
 // Reference: https://github.com/axios/axios#handling-errors
 const axiosHandleErrors = error => {
@@ -37,4 +38,4 @@ const isEmpty = value => {
     (typeof value === 'string' && value.trim().length === 0);
 };
 
-export { axiosHandleErrors, BigNumber, isEmpty, readableCrypto };
+export { axiosHandleErrors, BigNumber, generateWallet, isEmpty, readableCrypto };

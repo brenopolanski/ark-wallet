@@ -30,8 +30,8 @@
 
 <script>
 import axios from 'axios';
-import { mapGetters } from 'vuex';
 import moment from 'moment';
+import { mapGetters } from 'vuex';
 import Loading from 'vue-loading-overlay';
 import Alert from '@/components/Alert';
 import { axiosHandleErrors, readableCrypto } from '@/utils';

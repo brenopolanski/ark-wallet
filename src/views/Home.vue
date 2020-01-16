@@ -18,7 +18,7 @@
           type="button"
           class="text-gray-500 inline-link hover:underline"
           @click="toggleNetworkModal"
-        >Choose Network: ARK | {{ selectedNetwork }}</button>
+        >Choose Network: {{arkName}} | {{ selectedNetwork }}</button>
       </div>
     </form>
     <loading loader="dots" color="#fe463a" :active.sync="loading" />
@@ -43,6 +43,7 @@ import Alert from '@/components/Alert';
 import WalletsModal from '@/components/WalletsModal';
 import NetworkModal from '@/components/NetworkModal';
 import { axiosHandleErrors, isEmpty } from '@/utils';
+import * as constants from '@/utils/constants';
 
 export default {
   name: 'Home',
@@ -65,6 +66,7 @@ export default {
   computed: {
     ...mapState(['network']),
     ...mapGetters(['apiUrl']),
+    arkName: () => constants.ARK_NAME,
     selectedNetwork() {
       return this.network.charAt(0).toUpperCase() + this.network.slice(1);
     }
