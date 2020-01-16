@@ -76,10 +76,10 @@ $ yarn lint
 ### Mobile App
 
 <p align="center">
-  <img src="./screenshots/mobile1.png" width="210" />
-  <img src="./screenshots/mobile2.png" width="210" />
-  <img src="./screenshots/mobile3.png" width="210" />
-  <img src="./screenshots/mobile4.png" width="210" />
+  <img src="./screenshots/mobile1.jpeg" width="210" />
+  <img src="./screenshots/mobile2.jpeg" width="210" />
+  <img src="./screenshots/mobile3.jpeg" width="210" />
+  <img src="./screenshots/mobile4.jpeg" width="210" />
 </p>
 
 ## Contributing
