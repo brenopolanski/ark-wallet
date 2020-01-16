@@ -11,6 +11,7 @@
       <WalletDetails :wallet="wallet" />
       <WalletTransactions :wallet="wallet" />
     </div>
+    <Footer />
   </div>
 </template>
 
@@ -18,6 +19,7 @@
 import axios from 'axios';
 import { mapState, mapGetters, mapActions } from 'vuex';
 import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 import { WalletDetails, WalletTransactions } from '@/components/wallet';
 import { axiosHandleErrors } from '@/utils';
 import * as constants from '@/utils/constants';
@@ -27,7 +29,8 @@ export default {
   components: {
     Header,
     WalletDetails,
-    WalletTransactions
+    WalletTransactions,
+    Footer
   },
   computed: {
     ...mapState(['network', 'wallet']),
