@@ -4,6 +4,12 @@
 
 > ARK wallet challenge assignment
 
+[![ark-wallet](./screenshots/web1.png)](http://arkwallet.netlify.com/)
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/d4947717-7997-417c-8f7e-cf589654b03a/deploy-status)](https://app.netlify.com/sites/arkwallet/deploys)
+
+### **Try the demo** → http://arkwallet.netlify.com
+
 ## Quick Start
 
 First of all, install the dependencies to run this app.
