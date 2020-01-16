@@ -12,9 +12,7 @@ export default new Vuex.Store({
   },
   getters: {
     apiUrl: state => {
-      return state.network === constants.DEFAULT_NETWORK
-        ? constants.MAINNET_API_URL
-        : constants.DEVNET_API_URL;
+      return state.network === constants.DEFAULT_NETWORK ? constants.MAINNET_API_URL : constants.DEVNET_API_URL;
     },
     walletIsEmpty: state => !state.wallet.hasOwnProperty('address')
   },

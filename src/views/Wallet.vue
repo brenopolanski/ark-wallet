@@ -4,9 +4,7 @@
     <div class="wallet-container">
       <div class="flex justify-between">
         <h1 class="font-bold text-3xl">Wallet Summary</h1>
-        <span
-          class="flex items-center text-gray-500 inline-link"
-        >Network: {{ arkName }} | {{ selectedNetwork }}</span>
+        <span class="flex items-center text-gray-500 inline-link">Network: {{ arkName }} | {{ selectedNetwork }}</span>
       </div>
       <WalletDetails :wallet="wallet" />
       <WalletTransactions :wallet="wallet" />

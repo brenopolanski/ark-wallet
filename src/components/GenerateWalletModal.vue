@@ -6,9 +6,7 @@
         <span class="font-bold text-xl">Generate Wallet</span>
       </div>
       <div class="modal-bottom">
-        <div
-          class="w-full text-center text-gray-600"
-        >{{ arkName }} | {{ selectedNetwork }} ( {{ getDateNow() }} )</div>
+        <div class="w-full text-center text-gray-600">{{ arkName }} | {{ selectedNetwork }} ( {{ getDateNow() }} )</div>
         <div class="w-full mt-5 border-dashed border-b border-gray-600 py-4">
           <div class="w-full">
             <span class="text-gray-700 mr-2">Address</span>

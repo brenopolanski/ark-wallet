@@ -4,9 +4,7 @@
     <div class="delegates-container">
       <div class="flex justify-between">
         <h1 class="font-bold text-3xl">Delegates</h1>
-        <span
-          class="flex items-center text-gray-500 inline-link"
-        >Network: {{ arkName }} | {{ selectedNetwork }}</span>
+        <span class="flex items-center text-gray-500 inline-link">Network: {{ arkName }} | {{ selectedNetwork }}</span>
       </div>
       <ActiveDelegates />
     </div>
