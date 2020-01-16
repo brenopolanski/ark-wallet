@@ -2,7 +2,7 @@
   <div class="menu-container">
     <Slide right>
       <router-link :to="`/wallets/${walletAddress}`">
-        <span class="text-lg hover:text-red-500">Home</span>
+        <span class="text-lg hover:text-red-500">Wallet Summary</span>
       </router-link>
       <a href="#" @click.prevent="toggleGenerateWalletModal">
         <span class="text-lg hover:text-red-500">Generate Wallet</span>
