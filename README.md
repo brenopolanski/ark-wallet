@@ -55,11 +55,11 @@ $ yarn lint
 
 ## Screenshots
 
-### Web
+### Browser App
 
 | <img src="./screenshots/web1.png" width="440" height="247"> | <img src="./screenshots/web2.png" width="440" height="247"> |
 | :---------------------------------------------------------: | :---------------------------------------------------------: |
-|                      **Import Wallet**                      |                   **Search Wallet Modal**                   |
+|                      **Import Wallet**                      |                 **All - Top Wallets Modal**                 |
 
 | <img src="./screenshots/web3.png" width="440" height="247"> | <img src="./screenshots/web4.png" width="440" height="247"> |
 | :---------------------------------------------------------: | :---------------------------------------------------------: |
@@ -72,6 +72,15 @@ $ yarn lint
 | <img src="./screenshots/web7.png" width="440" height="247"> | <img src="./screenshots/web8.png" width="440" height="247"> |
 | :---------------------------------------------------------: | :---------------------------------------------------------: |
 |                  **Generate Wallet Modal**                  |                        **Delegates**                        |
+
+### Mobile App
+
+<p align="center">
+  <img src="./screenshots/mobile1.png" width="210" />
+  <img src="./screenshots/mobile2.png" width="210" />
+  <img src="./screenshots/mobile3.png" width="210" />
+  <img src="./screenshots/mobile4.png" width="210" />
+</p>
 
 ## Contributing
 
