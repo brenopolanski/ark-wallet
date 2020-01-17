@@ -59,7 +59,7 @@ $ yarn lint
 
 | <img src="./screenshots/web1.png" width="440" height="247"> | <img src="./screenshots/web2.png" width="440" height="247"> |
 | :---------------------------------------------------------: | :---------------------------------------------------------: |
-|                      **Import Wallet**                      |                 **All - Top Wallets Modal**                 |
+|                      **Import Wallet**                      |                 **All / Top Wallets Modal**                 |
 
 | <img src="./screenshots/web3.png" width="440" height="247"> | <img src="./screenshots/web4.png" width="440" height="247"> |
 | :---------------------------------------------------------: | :---------------------------------------------------------: |
