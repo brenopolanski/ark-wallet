@@ -53,7 +53,7 @@ $ yarn lint
 | [bignumber.js](https://github.com/MikeMcl/bignumber.js/) | A JavaScript library for arbitrary-precision decimal and non-decimal arithmetic. |
 | [@arkecosystem/crypto](https://www.npmjs.com/package/@arkecosystem/crypto) | ARK - Crypto |
 
-## Screenshots (see [mockups](./mockups))
+## Screenshots ([mockups](./mockups))
 
 ### Browser App
 
