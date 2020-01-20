@@ -6,6 +6,7 @@
       <div class="my-10 text-center">
         <h1 class="text-3xl">Ooops!</h1>
         <p>Sorry, page not found</p>
+        <button type="button" class="btn btn-secondary px-6 mt-2" @click="$router.go(-1)">← Back</button>
       </div>
     </div>
   </div>
