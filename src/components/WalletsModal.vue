@@ -24,7 +24,7 @@
         <div class="mt-10">
           <loading loader="dots" color="#fe463a" :active.sync="loading" />
           <div
-            v-if="wallets.length === 0 && !loading && !error"
+            v-if="!wallets.length && !loading && !error"
             class="w-full text-center"
           >No wallets found</div>
           <div v-if="wallets.length > 0 && !loading">

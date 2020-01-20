@@ -2,7 +2,10 @@
   <section class="wallet-transactions-container mt-5">
     <loading loader="dots" color="#fe463a" :active.sync="loading" />
     <Alert class="mt-5" v-if="error" :msg="errorMsg" />
-    <div v-if="transactions.length === 0 && !loading && !error" class="w-full text-center">No transactions</div>
+    <div
+      v-if="!transactions.length && !loading && !error"
+      class="w-full text-center"
+    >No transactions</div>
     <div v-if="transactions.length > 0 && !loading" class="table">
       <div class="row header">
         <div class="cell">Timestamp</div>
@@ -15,9 +18,10 @@
         <div class="cell" data-title="Timestamp">{{ formatDate(transaction.timestamp.unix) }}</div>
         <div class="cell truncate" data-title="Sender">{{ transaction.sender }}</div>
         <div class="cell truncate" data-title="Recipient">{{ transaction.recipient }}</div>
-        <div class="cell text-red-600" data-title="Amount">
-          {{ formatCryptoValue(transaction.amount) }} {{ arkSymbol }}
-        </div>
+        <div
+          class="cell text-red-600"
+          data-title="Amount"
+        >{{ formatCryptoValue(transaction.amount) }} {{ arkSymbol }}</div>
         <div class="cell" data-title="Fee">{{ formatCryptoValue(transaction.fee) }} {{ arkSymbol }}</div>
       </div>
     </div>
