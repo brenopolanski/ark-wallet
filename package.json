@@ -1,6 +1,6 @@
 {
   "name": "ark-wallet",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -11,9 +11,10 @@
     "@arkecosystem/crypto": "^2.5.31",
     "axios": "^0.19.1",
     "bignumber.js": "^9.0.0",
+    "bip39": "^3.0.2",
     "core-js": "^3.4.4",
     "moment": "^2.24.0",
-    "niceware": "^2.0.0",
+    "more-entropy": "^0.0.7",
     "nprogress": "^0.2.0",
     "register-service-worker": "^1.6.2",
     "v-tooltip": "^2.0.2",

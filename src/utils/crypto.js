@@ -1,25 +1,27 @@
-import niceware from 'niceware';
+import { entropyToMnemonic } from 'bip39';
 import * as crypto from '@arkecosystem/crypto';
-import * as contants from '@/utils/constants';
 
-export const generatePassphrase = () => {
-  const passphrase = niceware.generatePassphrase(contants.GENERATE_PASSPHRASE_SIZE);
+function shuffle(items) {
+  for (let i = items.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [items[i], items[j]] = [items[j], items[i]];
+  }
 
-  return passphrase.join(' ');
+  return items;
+}
+
+export const getAddress = (passphrase, networkVersion) => {
+  return crypto.Identities.Address.fromPassphrase(passphrase, networkVersion);
 };
 
-export const generateAddress = passphrase => {
-  return crypto.Identities.Address.fromPassphrase(passphrase);
-};
-
-export const generatePublicKey = passphrase => {
+export const getPublicKey = passphrase => {
   return crypto.Identities.PublicKey.fromPassphrase(passphrase);
 };
 
-export const generateWallet = () => {
-  const passphrase = generatePassphrase();
-  const address = generateAddress(passphrase);
-  const publicKey = generatePublicKey(passphrase);
+export const generateWallet = (entropy, networkVersion = 23) => {
+  const passphrase = entropyToMnemonic(shuffle(entropy).slice(0, 16));
+  const address = getAddress(passphrase, networkVersion);
+  const publicKey = getPublicKey(passphrase);
 
   return {
     passphrase,

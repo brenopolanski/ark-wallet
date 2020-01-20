@@ -49,9 +49,10 @@ $ yarn lint
 | [NProgress](https://github.com/rstacruz/nprogress/) | For slim progress bars like on YouTube, Medium, etc. |
 | [axios](https://github.com/axios/axios) | Promise based HTTP client for the browser and node.js. |
 | [Moment.js](https://github.com/moment/moment/) | Parse, validate, manipulate, and display dates in javascript. |
-| [niceware](https://github.com/diracdeltas/niceware) | Generate or convert random bytes into passphrases in Node and the browser. |
 | [bignumber.js](https://github.com/MikeMcl/bignumber.js/) | A JavaScript library for arbitrary-precision decimal and non-decimal arithmetic. |
 | [@arkecosystem/crypto](https://www.npmjs.com/package/@arkecosystem/crypto) | ARK - Crypto |
+| [bip39](https://github.com/bitcoinjs/bip39) | JavaScript implementation of Bitcoin BIP39: Mnemonic code for generating deterministic keys. |
+| [more-entropy](https://github.com/keybase/more-entropy) | Entropy collection in JavaScript for your node and/or browser apps. |
 
 ## Screenshots ([mockups](./mockups))
 

@@ -6,60 +6,66 @@
         <span class="font-bold text-xl">Generate Wallet</span>
       </div>
       <div class="modal-bottom">
-        <div class="w-full text-center text-gray-600">{{ arkName }} | {{ selectedNetwork }} ( {{ getDateNow() }} )</div>
-        <div class="w-full mt-5 border-dashed border-b border-gray-600 py-4">
-          <div class="w-full">
-            <span class="text-gray-700 mr-2">Address</span>
-            <button
-              type="button"
-              v-tooltip="'Copy'"
-              v-clipboard:copy="walletData.address"
-              v-clipboard:success="onCopy"
-              v-clipboard:error="onCopyError"
-            >
-              <img src="@/assets/images/copy.svg" alt="Copy button" />
-            </button>
+        <div
+          class="w-full text-center text-gray-600"
+        >{{ arkName }} | {{ selectedNetwork }} ( {{ getDateNow() }} )</div>
+        <Alert class="mt-5" v-if="error" :msg="errorMsg" />
+        <loading loader="dots" color="#fe463a" :active.sync="loading" />
+        <div v-if="wallet && !loading">
+          <div class="w-full mt-5 border-dashed border-b border-gray-600 py-4">
+            <div class="w-full">
+              <span class="text-gray-700 mr-2">Address</span>
+              <button
+                type="button"
+                v-tooltip="'Copy'"
+                v-clipboard:copy="wallet.address"
+                v-clipboard:success="onCopy"
+                v-clipboard:error="onCopyError"
+              >
+                <img src="@/assets/images/copy.svg" alt="Copy button" />
+              </button>
+            </div>
+            <div class="flex w-full">
+              <span class="font-semibold truncate">{{ wallet.address }}</span>
+            </div>
           </div>
-          <div class="flex w-full">
-            <span class="font-semibold truncate">{{ walletData.address }}</span>
+          <div class="w-full mt-2 border-dashed border-b border-gray-600 py-4">
+            <div class="w-full">
+              <span class="text-gray-700 mr-2">Passphrase</span>
+              <button
+                type="button"
+                v-tooltip="'Copy'"
+                v-clipboard:copy="wallet.passphrase"
+                v-clipboard:success="onCopy"
+                v-clipboard:error="onCopyError"
+              >
+                <img src="@/assets/images/copy.svg" alt="Copy button" />
+              </button>
+            </div>
+            <div class="flex w-full">
+              <span class="text-center italic">{{ wallet.passphrase }}</span>
+            </div>
           </div>
-        </div>
-        <div class="w-full mt-2 border-dashed border-b border-gray-600 py-4">
-          <div class="w-full">
-            <span class="text-gray-700 mr-2">Passphrase</span>
-            <button
-              type="button"
-              v-tooltip="'Copy'"
-              v-clipboard:copy="walletData.passphrase"
-              v-clipboard:success="onCopy"
-              v-clipboard:error="onCopyError"
-            >
-              <img src="@/assets/images/copy.svg" alt="Copy button" />
-            </button>
+          <div class="w-full mt-2 border-dashed border-b border-gray-600 py-4">
+            <div class="w-full">
+              <span class="text-gray-700 mr-2">Public Key</span>
+              <button
+                type="button"
+                v-tooltip="'Copy'"
+                v-clipboard:copy="wallet.publicKey"
+                v-clipboard:success="onCopy"
+                v-clipboard:error="onCopyError"
+              >
+                <img src="@/assets/images/copy.svg" alt="Copy button" />
+              </button>
+            </div>
+            <div class="flex w-full">
+              <span class="font-semibold truncate">{{ wallet.publicKey }}</span>
+            </div>
           </div>
-          <div class="flex w-full">
-            <span class="text-center italic">{{ walletData.passphrase }}</span>
+          <div class="w-full flex justify-center items-center mt-3">
+            <button class="btn btn-secondary w-32 h-10" @click="handleGenerateWallet">Generate</button>
           </div>
-        </div>
-        <div class="w-full mt-2 border-dashed border-b border-gray-600 py-4">
-          <div class="w-full">
-            <span class="text-gray-700 mr-2">Public Key</span>
-            <button
-              type="button"
-              v-tooltip="'Copy'"
-              v-clipboard:copy="walletData.publicKey"
-              v-clipboard:success="onCopy"
-              v-clipboard:error="onCopyError"
-            >
-              <img src="@/assets/images/copy.svg" alt="Copy button" />
-            </button>
-          </div>
-          <div class="flex w-full">
-            <span class="font-semibold truncate">{{ walletData.publicKey }}</span>
-          </div>
-        </div>
-        <div class="w-full flex justify-center items-center mt-3">
-          <button class="btn btn-secondary w-32 h-10" @click="handleGenerateWallet">Generate</button>
         </div>
       </div>
       <div class="modal-close-button" @click="closeGenerateWalletModal">
@@ -76,7 +82,11 @@
 
 <script>
 import moment from 'moment';
-import { mapState } from 'vuex';
+import { Generator } from 'more-entropy';
+import { randomBytes } from 'crypto';
+import { mapState, mapGetters } from 'vuex';
+import Loading from 'vue-loading-overlay';
+import Alert from '@/components/Alert';
 import { generateWallet } from '@/utils';
 import * as constants from '@/utils/constants';
 
@@ -85,13 +95,21 @@ export default {
   props: {
     isOpen: Boolean
   },
+  components: {
+    Loading,
+    Alert
+  },
   data() {
     return {
-      walletData: {}
+      wallet: null,
+      loading: false,
+      error: false,
+      errorMsg: ''
     };
   },
   computed: {
     ...mapState(['network']),
+    ...mapGetters(['networkVersion']),
     arkName: () => constants.ARK_NAME,
     selectedNetwork() {
       return this.network.charAt(0).toUpperCase() + this.network.slice(1);
@@ -108,7 +126,21 @@ export default {
       return moment().format('dddd, MMMM D, YYYY');
     },
     handleGenerateWallet() {
-      this.walletData = generateWallet();
+      try {
+        this.loading = true;
+        this.error = false;
+
+        new Generator().generate(2048, values => {
+          const entropy = values.concat(Array.from(randomBytes(256)));
+
+          this.loading = false;
+          this.wallet = generateWallet(entropy, this.networkVersion);
+        });
+      } catch (error) {
+        this.loading = false;
+        this.error = true;
+        this.errorMsg = 'Error when generating wallet!';
+      }
     },
     onCopy() {
       this.$toast.success('Copied!', {

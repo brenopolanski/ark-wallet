@@ -12,24 +12,27 @@
               class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l"
               :class="fetchFor === 'all' ? 'bg-gray-500 ' : 'bg-gray-300'"
               @click.prevent="handleFetchFor('all')"
-            >
-              All
-            </button>
+            >All</button>
             <button
               class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r"
               :class="fetchFor === 'top' ? 'bg-gray-500 ' : 'bg-gray-300'"
               @click.prevent="handleFetchFor('top')"
-            >
-              Top
-            </button>
+            >Top</button>
           </div>
         </div>
         <Alert class="mt-5" v-if="error" :msg="errorMsg" />
         <div class="mt-10">
-          <loading loader="dots" color="#fe463a" :active.sync="loading" :is-full-page="loadingFullPage" />
-          <div v-if="wallets.length === 0 && !loading && !error" class="w-full text-center">No wallets found</div>
+          <loading loader="dots" color="#fe463a" :active.sync="loading" />
+          <div
+            v-if="wallets.length === 0 && !loading && !error"
+            class="w-full text-center"
+          >No wallets found</div>
           <div v-if="wallets.length > 0 && !loading">
-            <div v-for="wallet of wallets" :key="wallet.address" class="flex border rounded p-2 mb-5">
+            <div
+              v-for="wallet of wallets"
+              :key="wallet.address"
+              class="flex border rounded p-2 mb-5"
+            >
               <div class="w-5/6">
                 <div class="w-full truncate">
                   <span class="font-semibold mr-2">{{ wallet.address }}</span>
@@ -87,7 +90,6 @@ export default {
       wallets: [],
       fetchFor: 'all', // 'all' or 'top' wallets
       loading: false,
-      loadingFullPage: false,
       error: false,
       errorMsg: ''
     };

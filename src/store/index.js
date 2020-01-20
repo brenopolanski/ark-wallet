@@ -7,13 +7,16 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    network: constants.DEFAULT_NETWORK,
+    network: constants.NETWORK_MAINNET,
     wallet: {}
   },
   getters: {
     apiUrl: state => {
-      return state.network === constants.DEFAULT_NETWORK ? constants.MAINNET_API_URL : constants.DEVNET_API_URL;
+      return state.network === constants.NETWORK_MAINNET ? constants.MAINNET_API_URL : constants.DEVNET_API_URL;
     },
+    networkVersion: state => state.network === constants.NETWORK_MAINNET
+      ? constants.NETWORK_VERSION[constants.NETWORK_MAINNET]
+      : constants.NETWORK_VERSION[constants.NETWORK_DEVNET],
     walletIsEmpty: state => !state.wallet.hasOwnProperty('address')
   },
   actions: {
