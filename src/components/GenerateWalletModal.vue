@@ -82,8 +82,6 @@
 
 <script>
 import moment from 'moment';
-import { Generator } from 'more-entropy';
-import { randomBytes } from 'crypto';
 import { mapState, mapGetters } from 'vuex';
 import Loading from 'vue-loading-overlay';
 import Alert from '@/components/Alert';
@@ -130,12 +128,12 @@ export default {
         this.loading = true;
         this.error = false;
 
-        new Generator().generate(2048, values => {
-          const entropy = values.concat(Array.from(randomBytes(256)));
-
+        const generateWalletCallback = wallet => {
           this.loading = false;
-          this.wallet = generateWallet(entropy, this.networkVersion);
-        });
+          this.wallet = wallet;
+        };
+
+        generateWallet(generateWalletCallback, this.networkVersion);
       } catch (error) {
         this.loading = false;
         this.error = true;
