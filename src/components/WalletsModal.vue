@@ -69,12 +69,12 @@
 </template>
 
 <script>
-import axios from 'axios';
 import { mapGetters } from 'vuex';
 import Loading from 'vue-loading-overlay';
 import Alert from '@/components/Alert';
 import { axiosHandleErrors, readableCrypto } from '@/utils';
 import * as constants from '@/utils/constants';
+import WalletService from '@/services/WalletService';
 
 export default {
   name: 'WalletsModal',
@@ -117,37 +117,35 @@ export default {
         this.loadTopWallets();
       }
     },
-    async loadAllWallets() {
-      try {
-        this.loading = true;
-        this.error = false;
+    loadAllWallets() {
+      this.loading = true;
+      this.error = false;
 
-        const response = await axios.get(`${this.apiUrl}/wallets`);
-        const { data } = response.data;
-
-        this.wallets = data;
-      } catch (error) {
-        this.error = true;
-        this.errorMsg = axiosHandleErrors(error);
-      } finally {
-        this.loading = false;
-      }
+      WalletService.getWallets()
+        .then(res => {
+          const { data } = res.data;
+          this.wallets = data;
+        })
+        .catch(error => {
+          this.error = true;
+          this.errorMsg = axiosHandleErrors(error);
+        })
+        .finally(() => (this.loading = false));
     },
-    async loadTopWallets() {
-      try {
-        this.loading = true;
-        this.error = false;
+    loadTopWallets() {
+      this.loading = true;
+      this.error = false;
 
-        const response = await axios.get(`${this.apiUrl}/wallets/top`);
-        const { data } = response.data;
-
-        this.wallets = data;
-      } catch (error) {
-        this.error = true;
-        this.errorMsg = axiosHandleErrors(error);
-      } finally {
-        this.loading = false;
-      }
+      WalletService.getTopWallets()
+        .then(res => {
+          const { data } = res.data;
+          this.wallets = data;
+        })
+        .catch(error => {
+          this.error = true;
+          this.errorMsg = axiosHandleErrors(error);
+        })
+        .finally(() => (this.loading = false));
     },
     onCopy() {
       this.$toast.success('Copied!', {
