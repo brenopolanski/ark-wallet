@@ -8,6 +8,7 @@
     >No transactions</div>
     <div v-if="transactions.length > 0 && !loading" class="table">
       <div class="row header">
+        <div class="cell">ID</div>
         <div class="cell">Timestamp</div>
         <div class="cell">Sender</div>
         <div class="cell">Recipient</div>
@@ -15,9 +16,46 @@
         <div class="cell">Fee</div>
       </div>
       <div v-for="transaction of transactions" :key="transaction.id" class="row">
+        <div class="cell" data-title="ID">
+          <a
+            class="text-blue-500 hover:text-blue-700 hover:underline hidden sm:hidden md:hidden lg:block xl:block"
+            v-tooltip="transaction.id"
+            :href="`https://explorer.ark.io/transaction/${transaction.id}`"
+            target="_blank"
+          >{{ transaction.id | truncate(15) }}</a>
+          <a
+            class="text-blue-500 hover:text-blue-700 hover:underline truncate block sm:block md:block lg:hidden xl:hidden"
+            :href="`https://explorer.ark.io/transaction/${transaction.id}`"
+            target="_blank"
+          >{{ transaction.id }}</a>
+        </div>
         <div class="cell" data-title="Timestamp">{{ formatDate(transaction.timestamp.unix) }}</div>
-        <div class="cell truncate" data-title="Sender">{{ transaction.sender }}</div>
-        <div class="cell truncate" data-title="Recipient">{{ transaction.recipient }}</div>
+        <div class="cell" data-title="Sender">
+          <a
+            class="text-blue-500 hover:text-blue-700 hover:underline hidden sm:hidden md:hidden lg:block xl:block"
+            v-tooltip="transaction.sender"
+            :href="`https://explorer.ark.io/wallets/${transaction.sender}`"
+            target="_blank"
+          >{{ transaction.sender | truncate(15) }}</a>
+          <a
+            class="text-blue-500 hover:text-blue-700 hover:underline truncate block sm:block md:block lg:hidden xl:hidden"
+            :href="`https://explorer.ark.io/wallets/${transaction.sender}`"
+            target="_blank"
+          >{{ transaction.sender }}</a>
+        </div>
+        <div class="cell" data-title="Recipient">
+          <a
+            class="text-blue-500 hover:text-blue-700 hover:underline hidden sm:hidden md:hidden lg:block xl:block"
+            v-tooltip="transaction.recipient"
+            :href="`https://explorer.ark.io/wallets/${transaction.recipient}`"
+            target="_blank"
+          >{{ transaction.recipient | truncate(15) }}</a>
+          <a
+            class="text-blue-500 hover:text-blue-700 hover:underline truncate block sm:block md:block lg:hidden xl:hidden"
+            :href="`https://explorer.ark.io/wallets/${transaction.recipient}`"
+            target="_blank"
+          >{{ transaction.recipient }}</a>
+        </div>
         <div
           class="cell text-red-600"
           data-title="Amount"

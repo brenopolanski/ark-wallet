@@ -8407,6 +8407,11 @@ vue-toast-notification@^0.0.3:
   resolved "https://registry.yarnpkg.com/vue-toast-notification/-/vue-toast-notification-0.0.3.tgz#be2bd4b85cc44b935e912e2ebcc6436f614dc3ea"
   integrity sha512-3UQuEa2oQX5JcWwMcnm6Kf9djL4XwWWv2R8uIawFC/PSPHYp4JCnXiYu+BVNc/qCQhpSvfkXmmDVOLRau5kVDg==
 
+vue-truncate-filter@^1.1.7:
+  version "1.1.7"
+  resolved "https://registry.yarnpkg.com/vue-truncate-filter/-/vue-truncate-filter-1.1.7.tgz#e365fd2d4520c017293308e0ecbb1dd6176c3af2"
+  integrity sha512-kFmUDsDFIj5vArdK6hX84v80fTWJIMrsYF5keCluy9hMiaKGL8NyApnMbWavZeDod24YeYMVQ9jjd7MkRn3AAg==
+
 vue@^2.5.17, vue@^2.6.10:
   version "2.6.11"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.11.tgz#76594d877d4b12234406e84e35275c6d514125c5"

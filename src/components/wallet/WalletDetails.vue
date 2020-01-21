@@ -43,14 +43,14 @@
           </button>
         </div>
       </div>
-      <div class="w-full sm:w-1/6 md:w-1/6 lg:w-1/6 xl:w-1/6 hidden sm:hidden md:block lg:block xl:block">
+      <div
+        class="w-full sm:w-1/6 md:w-1/6 lg:w-1/6 xl:w-1/6 hidden sm:hidden md:block lg:block xl:block"
+      >
         <div class="w-full h-full flex items-center justify-center">
           <button
             class="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded"
             @click.prevent="togglePublicKey"
-          >
-            {{ toggleButtonTitle }}
-          </button>
+          >{{ toggleButtonTitle }}</button>
         </div>
       </div>
     </div>
