@@ -10,7 +10,7 @@ export const storage = {
     const item = localStorage.getItem(storageName);
 
     if (item === null) {
-      return {}.hasOwnProperty.call(defaults, storageName) ? defaults[storageName] : undefined;
+      return {}.hasOwnProperty.call(defaults, storageName) ? defaults[storageName] : null;
     }
 
     if (item === 'true' || item === 'false') {

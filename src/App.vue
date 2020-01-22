@@ -24,14 +24,16 @@ export default {
     this.setWallet();
   },
   methods: {
-    ...mapActions(['setNetwork', 'importWalletAddress']),
+    ...mapActions(['setNetwork', 'importWalletAddress', 'setFavoriteWallets']),
     saveConfigFromNetwork() {
       const network = storage.get('network') || this.network;
       this.setNetwork(network);
     },
     setWallet() {
       const address = storage.get('walletAddress') || this.wallet.address;
+      const bookmarks = JSON.parse(storage.get('walletBookmarks')) || this.wallet.bookmarks;
       this.importWalletAddress(address);
+      this.setFavoriteWallets(bookmarks);
     }
   }
 };

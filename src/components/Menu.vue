@@ -7,6 +7,9 @@
       >
         <span class="text-lg hover:text-red-500">My Wallet</span>
       </router-link>
+      <a href="#" @click.prevent="toggleFavoriteWalletsModal">
+        <span class="text-lg hover:text-red-500">Favorite Wallets</span>
+      </a>
       <a href="#" @click.prevent="toggleGenerateWalletModal">
         <span class="text-lg hover:text-red-500">Generate Wallet</span>
       </a>
@@ -17,6 +20,11 @@
         <span class="text-lg hover:text-red-500">Exit</span>
       </router-link>
     </Slide>
+    <FavoriteWalletsModal
+      v-if="showFavoriteWalletsModal"
+      :is-open="showFavoriteWalletsModal"
+      @closeFavoriteWalletsModal="toggleFavoriteWalletsModal"
+    />
     <GenerateWalletModal
       v-if="showGenerateWalletModal"
       :is-open="showGenerateWalletModal"
@@ -28,16 +36,18 @@
 <script>
 import { mapState } from 'vuex';
 import { Slide } from 'vue-burger-menu';
-import GenerateWalletModal from '@/components/GenerateWalletModal';
+import { FavoriteWalletsModal, GenerateWalletModal } from '@/components';
 
 export default {
   name: 'Menu',
   components: {
+    FavoriteWalletsModal,
     GenerateWalletModal,
     Slide
   },
   data() {
     return {
+      showFavoriteWalletsModal: false,
       showGenerateWalletModal: false
     };
   },
@@ -48,6 +58,9 @@ export default {
     }
   },
   methods: {
+    toggleFavoriteWalletsModal() {
+      this.showFavoriteWalletsModal = !this.showFavoriteWalletsModal;
+    },
     toggleGenerateWalletModal() {
       this.showGenerateWalletModal = !this.showGenerateWalletModal;
     }
