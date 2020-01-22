@@ -1,8 +1,11 @@
 <template>
   <div class="menu-container">
     <Slide right>
-      <router-link :to="`/wallets/${walletAddress}`">
-        <span class="text-lg hover:text-red-500">Wallet Summary</span>
+      <router-link
+        v-show="walletAddress"
+        :to="{ name: 'wallets', params: { address: walletAddress } }"
+      >
+        <span class="text-lg hover:text-red-500">My Wallet</span>
       </router-link>
       <a href="#" @click.prevent="toggleGenerateWalletModal">
         <span class="text-lg hover:text-red-500">Generate Wallet</span>
@@ -30,8 +33,8 @@ import GenerateWalletModal from '@/components/GenerateWalletModal';
 export default {
   name: 'Menu',
   components: {
-    Slide,
-    GenerateWalletModal
+    GenerateWalletModal,
+    Slide
   },
   data() {
     return {

@@ -42,7 +42,7 @@ export default new Vuex.Store({
       state.network = payload.value;
     },
     [types.IMPORT_WALLET_ADDRESS](state, payload) {
-      storage.set('wallet_address', payload.value);
+      storage.set('walletAddress', payload.value);
       state.wallet.address = payload.value;
     }
   }

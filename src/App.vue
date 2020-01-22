@@ -5,13 +5,14 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
+import { mapState, mapGetters, mapActions } from 'vuex';
 import api from '@/services/api';
 import { storage } from '@/services/storage';
 
 export default {
   name: 'App',
   computed: {
+    ...mapState(['network', 'wallet']),
     ...mapGetters(['apiUrl'])
   },
   watch: {
@@ -20,11 +21,17 @@ export default {
   mounted() {
     api.defaults.baseURL = this.apiUrl;
     this.setConfigNetwork();
+    this.setWallet();
   },
   methods: {
-    ...mapActions(['setNetwork']),
+    ...mapActions(['setNetwork', 'importWalletAddress']),
     setConfigNetwork() {
-      this.setNetwork(storage.get('network'));
+      const network = storage.get('network') || this.network;
+      this.setNetwork(network);
+    },
+    setWallet() {
+      const address = storage.get('walletAddress') || this.wallet.address;
+      this.importWalletAddress(address);
     }
   }
 };

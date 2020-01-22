@@ -69,7 +69,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
 import Loading from 'vue-loading-overlay';
 import Alert from '@/components/Alert';
 import { WalletService } from '@/services';
@@ -95,7 +94,6 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['apiUrl']),
     arkSymbol: () => constants.ARK_SYMBOL
   },
   mounted() {
