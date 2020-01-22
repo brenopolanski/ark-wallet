@@ -6,9 +6,7 @@
         <span class="font-bold text-xl">Generate Wallet</span>
       </div>
       <div class="modal-bottom">
-        <div
-          class="w-full text-center text-gray-600"
-        >{{ arkName }} | {{ selectedNetwork }} ( {{ getDateNow() }} )</div>
+        <div class="w-full text-center text-gray-600">{{ arkName }} | {{ selectedNetwork }} ( {{ getDateNow() }} )</div>
         <Alert class="mt-5" v-if="error" :msg="errorMsg" />
         <loading loader="dots" color="#fe463a" :active.sync="loading" />
         <div v-if="wallet && !loading">

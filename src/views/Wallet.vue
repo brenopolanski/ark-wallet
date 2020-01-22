@@ -4,9 +4,7 @@
     <div class="wallet-container">
       <div class="flex justify-between">
         <div class="flex">
-          <h1
-            class="font-bold text-3xl mr-2 hidden sm:hidden md:block lg:block xl:block"
-          >Wallet Summary</h1>
+          <h1 class="font-bold text-3xl mr-2 hidden sm:hidden md:block lg:block xl:block">Wallet Summary</h1>
           <h1 class="font-bold text-3xl mr-2 block sm:block md:hidden lg:hidden xl:hidden">Wallet</h1>
           <a href="#" class="star-icon" @click.prevent="toggleFavorite">
             <img
@@ -16,9 +14,7 @@
             />
           </a>
         </div>
-        <span
-          class="flex items-center text-gray-500 inline-link"
-        >Network: {{ arkName }} | {{ selectedNetwork }}</span>
+        <span class="flex items-center text-gray-500 inline-link">Network: {{ arkName }} | {{ selectedNetwork }}</span>
       </div>
       <loading loader="dots" color="#fe463a" :active.sync="loading" />
       <WalletDetails :wallet="importedWallet" />

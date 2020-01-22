@@ -7,31 +7,17 @@
       <input v-model="walletAddress" placeholder="Enter wallet address or public key" />
       <div class="flex flex-col">
         <button type="submit" class="btn btn-primary mt-2">Import Wallet</button>
-        <button
-          type="button"
-          class="btn btn-secondary mt-2"
-          @click="toggleWalletsModal"
-        >Search Wallet</button>
+        <button type="button" class="btn btn-secondary mt-2" @click="toggleWalletsModal">Search Wallet</button>
       </div>
       <div class="flex flex-wrap justify-center items-center mt-10">
-        <button
-          type="button"
-          class="text-gray-500 inline-link hover:underline"
-          @click="toggleNetworkModal"
-        >Choose Network: {{ arkName }} | {{ selectedNetwork }}</button>
+        <button type="button" class="text-gray-500 inline-link hover:underline" @click="toggleNetworkModal">
+          Choose Network: {{ arkName }} | {{ selectedNetwork }}
+        </button>
       </div>
     </form>
     <loading loader="dots" color="#fe463a" :active.sync="loading" />
-    <WalletsModal
-      v-if="showWalletsModal"
-      :is-open="showWalletsModal"
-      @closeWalletsModal="toggleWalletsModal"
-    />
-    <NetworkModal
-      v-if="showNetworkModal"
-      :is-open="showNetworkModal"
-      @closeNetworkModal="toggleNetworkModal"
-    />
+    <WalletsModal v-if="showWalletsModal" :is-open="showWalletsModal" @closeWalletsModal="toggleWalletsModal" />
+    <NetworkModal v-if="showNetworkModal" :is-open="showNetworkModal" @closeNetworkModal="toggleNetworkModal" />
   </div>
 </template>
 

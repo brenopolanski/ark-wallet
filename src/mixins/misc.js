@@ -22,7 +22,9 @@ export default {
     readableTimestampAgo(time, compareTime) {
       const momentTime = moment.unix(time).local();
 
-      return typeof compareTime !== 'undefined' ? momentTime.from(moment.unix(compareTime).local()) : momentTime.fromNow();
+      return typeof compareTime !== 'undefined'
+        ? momentTime.from(moment.unix(compareTime).local())
+        : momentTime.fromNow();
     }
   }
 };

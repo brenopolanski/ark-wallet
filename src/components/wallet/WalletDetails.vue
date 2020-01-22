@@ -31,25 +31,14 @@
           <span class="font-semibold truncate">{{ readableCrypto(wallet.balance) }}</span>
         </div>
       </div>
-      <div
-        v-if="isDelegate && !showPublicKey"
-        class="w-full sm:w-1/6 md:w-1/6 lg:w-1/6 xl:w-1/6 pr-8"
-      >
+      <div v-if="isDelegate && !showPublicKey" class="w-full sm:w-1/6 md:w-1/6 lg:w-1/6 xl:w-1/6 pr-8">
         <div class="w-full mb-2">
           <span class="text-gray-600">Delegate</span>
         </div>
         <div class="w-full text-white">
-          <a
-            href="#"
-            class="font-semibold hover:underline mr-2"
-            @click.prevent="toggleDelegateVoteModal"
-          >Vote</a>
+          <a href="#" class="font-semibold hover:underline mr-2" @click.prevent="toggleDelegateVoteModal">Vote</a>
           <span>|</span>
-          <a
-            href="#"
-            class="font-semibold hover:underline ml-2"
-            @click.prevent="toggleDelegateVotersModal"
-          >Voters</a>
+          <a href="#" class="font-semibold hover:underline ml-2" @click.prevent="toggleDelegateVotersModal">Voters</a>
         </div>
       </div>
       <div v-if="showPublicKey" class="w-full sm:w-5/6 md:w-5/6 lg:w-5/6 xl:w-5/6 pr-8">
@@ -70,14 +59,14 @@
           </button>
         </div>
       </div>
-      <div
-        class="w-full sm:w-1/6 md:w-1/6 lg:w-1/6 xl:w-1/6 hidden sm:hidden md:block lg:block xl:block"
-      >
+      <div class="w-full sm:w-1/6 md:w-1/6 lg:w-1/6 xl:w-1/6 hidden sm:hidden md:block lg:block xl:block">
         <div class="w-full h-full flex items-center justify-center">
           <button
             class="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded"
             @click.prevent="togglePublicKey"
-          >{{ toggleButtonTitle }}</button>
+          >
+            {{ toggleButtonTitle }}
+          </button>
         </div>
       </div>
     </div>

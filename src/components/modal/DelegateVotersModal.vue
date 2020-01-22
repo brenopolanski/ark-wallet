@@ -9,16 +9,9 @@
         <Alert class="mt-5" v-if="error" :msg="errorMsg" />
         <div class="mt-5">
           <loading loader="dots" color="#fe463a" :active.sync="loading" />
-          <div
-            v-if="!voters.length && !loading && !error"
-            class="w-full text-center"
-          >No voters found</div>
+          <div v-if="!voters.length && !loading && !error" class="w-full text-center">No voters found</div>
           <div v-if="voters.length > 0 && !loading">
-            <div
-              v-for="[index, voter] of voters.entries()"
-              :key="voter.address"
-              class="flex border rounded p-2 mb-5"
-            >
+            <div v-for="[index, voter] of voters.entries()" :key="voter.address" class="flex border rounded p-2 mb-5">
               <div class="w-1/6">
                 <div class="w-full h-full flex items-center justify-center">
                   <span>{{ index + 1 }}</span>

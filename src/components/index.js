@@ -7,13 +7,4 @@ import Menu from './Menu';
 import NetworkModal from './NetworkModal';
 import WalletsModal from './WalletsModal';
 
-export {
-  Alert,
-  FavoriteWalletsModal,
-  Footer,
-  GenerateWalletModal,
-  Header,
-  Menu,
-  NetworkModal,
-  WalletsModal
-};
+export { Alert, FavoriteWalletsModal, Footer, GenerateWalletModal, Header, Menu, NetworkModal, WalletsModal };

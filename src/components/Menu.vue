@@ -1,10 +1,7 @@
 <template>
   <div class="menu-container">
     <Slide right>
-      <router-link
-        v-show="walletAddress"
-        :to="{ name: 'wallets', params: { address: walletAddress } }"
-      >
+      <router-link v-show="walletAddress" :to="{ name: 'wallets', params: { address: walletAddress } }">
         <span class="text-lg hover:text-red-500">My Wallet</span>
       </router-link>
       <a href="#" @click.prevent="toggleFavoriteWalletsModal">

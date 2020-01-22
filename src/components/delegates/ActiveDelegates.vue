@@ -19,20 +19,13 @@
             class="text-blue-500 hover:text-blue-700 hover:underline"
             v-tooltip="delegate.address"
             :to="{ name: 'wallets', params: { address: delegate.address } }"
-          >{{ delegate.username }}</router-link>
+            >{{ delegate.username }}</router-link
+          >
         </div>
         <div class="cell" data-title="Forged blocks">{{ readableNumber(delegate.blocks.produced) }}</div>
-        <div
-          class="cell"
-          data-title="Last forged"
-        >{{ readableTimestampAgo(delegate.blocks.last.timestamp.unix) }}</div>
+        <div class="cell" data-title="Last forged">{{ readableTimestampAgo(delegate.blocks.last.timestamp.unix) }}</div>
         <div class="cell" data-title="Status">
-          <img
-            class="active-icon mx-auto"
-            width="19"
-            src="@/assets/images/active.svg"
-            alt="Active icon"
-          />
+          <img class="active-icon mx-auto" width="19" src="@/assets/images/active.svg" alt="Active icon" />
         </div>
         <div class="cell" data-title="Votes">
           <span class="text-xs text-gray-600">{{ percentageString(delegate.production.approval) }}</span>

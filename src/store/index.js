@@ -21,9 +21,10 @@ export default new Vuex.Store({
     apiUrl: state => {
       return state.network === constants.NETWORK_MAINNET ? constants.MAINNET_API_URL : constants.DEVNET_API_URL;
     },
-    networkVersion: state => state.network === constants.NETWORK_MAINNET
-      ? constants.NETWORK_VERSION[constants.NETWORK_MAINNET]
-      : constants.NETWORK_VERSION[constants.NETWORK_DEVNET],
+    networkVersion: state =>
+      state.network === constants.NETWORK_MAINNET
+        ? constants.NETWORK_VERSION[constants.NETWORK_MAINNET]
+        : constants.NETWORK_VERSION[constants.NETWORK_DEVNET],
     bookmarks: state => state.wallet.bookmarks[state.network]
   },
   actions: {
@@ -79,7 +80,9 @@ export default new Vuex.Store({
       const { value } = payload;
 
       if (state.wallet.bookmarks[state.network].includes(payload.value)) {
-        state.wallet.bookmarks[state.network] = state.wallet.bookmarks[state.network].filter(address => address !== value);
+        state.wallet.bookmarks[state.network] = state.wallet.bookmarks[state.network].filter(
+          address => address !== value
+        );
         storage.set('walletBookmarks', JSON.stringify(state.wallet.bookmarks));
       } else {
         state.wallet.bookmarks[state.network].push(value);
@@ -91,8 +94,10 @@ export default new Vuex.Store({
       storage.set('walletBookmarks', JSON.stringify(state.wallet.bookmarks));
     },
     [types.REMOVE_FAVORITE_WALLET](state, payload) {
-      state.wallet.bookmarks[state.network] = state.wallet.bookmarks[state.network].filter(address => address !== payload.value);
+      state.wallet.bookmarks[state.network] = state.wallet.bookmarks[state.network].filter(
+        address => address !== payload.value
+      );
       storage.set('walletBookmarks', JSON.stringify(state.wallet.bookmarks));
-    },
+    }
   }
 });

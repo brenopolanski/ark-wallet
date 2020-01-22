@@ -11,36 +11,27 @@
             <button
               class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded"
               @click="handleRemoveAllFavoriteWallets"
-            >Remove All</button>
+            >
+              Remove All
+            </button>
           </div>
         </div>
         <div class="mt-10">
-          <div
-            v-if="!favoriteWallets.length"
-            class="w-full text-center"
-          >No favorite wallets found for the {{ selectedNetwork }} network</div>
+          <div v-if="!favoriteWallets.length" class="w-full text-center">
+            No favorite wallets found for the {{ selectedNetwork }} network
+          </div>
           <div v-if="favoriteWallets.length > 0">
-            <div
-              v-for="address of favoriteWallets"
-              :key="address"
-              class="flex border rounded p-2 mb-5"
-            >
+            <div v-for="address of favoriteWallets" :key="address" class="flex border rounded p-2 mb-5">
               <div class="w-5/6">
                 <div class="w-full truncate">
-                  <a
-                    href="#"
-                    class="font-semibold hover:underline mr-2"
-                    @click.prevent="handleWalletRoute(address)"
-                  >{{ address }}</a>
+                  <a href="#" class="font-semibold hover:underline mr-2" @click.prevent="handleWalletRoute(address)">{{
+                    address
+                  }}</a>
                 </div>
               </div>
               <div class="w-1/6">
                 <div class="w-full h-full flex items-center justify-center">
-                  <button
-                    type="button"
-                    v-tooltip="'Remove'"
-                    @click="handleRemoveFavoriteWallet(address)"
-                  >
+                  <button type="button" v-tooltip="'Remove'" @click="handleRemoveFavoriteWallet(address)">
                     <img width="19" src="@/assets/images/remove.svg" alt="Remove icon" />
                   </button>
                 </div>
