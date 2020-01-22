@@ -14,6 +14,19 @@ class DelegateService {
       return error.response;
     }
   }
+
+  async getAllVotersDelegate(address, page = 1, limit = 25) {
+    try {
+      return await api.get(`/delegates/${address}/voters`, {
+        params: {
+          page,
+          limit
+        }
+      });
+    } catch (error) {
+      return error.response;
+    }
+  }
 }
 
 export default new DelegateService();

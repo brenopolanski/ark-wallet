@@ -19,12 +19,37 @@
           </button>
         </div>
       </div>
-      <div v-if="!showPublicKey" class="w-full sm:w-2/6 md:w-2/6 lg:w-2/6 xl:w-2/6 pr-8">
+      <div
+        v-if="!showPublicKey"
+        class="w-full pr-8"
+        :class="isDelegate ? 'sm:w-1/6 md:w-1/6 lg:w-1/6 xl:w-1/6' : 'sm:w-2/6 md:w-2/6 lg:w-2/6 xl:w-2/6'"
+      >
         <div class="w-full mb-2">
           <span class="text-gray-600">Balance (ARK)</span>
         </div>
         <div class="w-full text-white">
           <span class="font-semibold truncate">{{ readableCrypto(wallet.balance) }}</span>
+        </div>
+      </div>
+      <div
+        v-if="isDelegate && !showPublicKey"
+        class="w-full sm:w-1/6 md:w-1/6 lg:w-1/6 xl:w-1/6 pr-8"
+      >
+        <div class="w-full mb-2">
+          <span class="text-gray-600">Delegate</span>
+        </div>
+        <div class="w-full text-white">
+          <a
+            href="#"
+            class="font-semibold hover:underline mr-2"
+            @click.prevent="toggleDelegateVoteModal"
+          >Vote</a>
+          <span>|</span>
+          <a
+            href="#"
+            class="font-semibold hover:underline ml-2"
+            @click.prevent="toggleDelegateVotersModal"
+          >Voters</a>
         </div>
       </div>
       <div v-if="showPublicKey" class="w-full sm:w-5/6 md:w-5/6 lg:w-5/6 xl:w-5/6 pr-8">
@@ -56,17 +81,37 @@
         </div>
       </div>
     </div>
+    <DelegateVoteModal
+      v-if="showDelegateVoteModal"
+      :delegate="wallet"
+      :is-open="showDelegateVoteModal"
+      @closeDelegateVoteModal="toggleDelegateVoteModal"
+    />
+    <DelegateVotersModal
+      v-if="showDelegateVotersModal"
+      :delegate="wallet"
+      :is-open="showDelegateVotersModal"
+      @closeDelegateVotersModal="toggleDelegateVotersModal"
+    />
   </section>
 </template>
 
 <script>
+import { DelegateVoteModal, DelegateVotersModal } from '@/components/modal';
+
 export default {
   name: 'WalletDetails',
   props: {
     wallet: Object
   },
+  components: {
+    DelegateVoteModal,
+    DelegateVotersModal
+  },
   data() {
     return {
+      showDelegateVoteModal: false,
+      showDelegateVotersModal: false,
       showPublicKey: false
     };
   },
@@ -79,6 +124,12 @@ export default {
     }
   },
   methods: {
+    toggleDelegateVoteModal() {
+      this.showDelegateVoteModal = !this.showDelegateVoteModal;
+    },
+    toggleDelegateVotersModal() {
+      this.showDelegateVotersModal = !this.showDelegateVotersModal;
+    },
     togglePublicKey() {
       this.showPublicKey = !this.showPublicKey;
     },
