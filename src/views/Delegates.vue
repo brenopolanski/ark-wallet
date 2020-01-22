@@ -15,16 +15,15 @@
 </template>
 
 <script>
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import { Footer, Header } from '@/components';
 import { ActiveDelegates } from '@/components/delegates';
 
 export default {
   name: 'Delegates',
   components: {
+    Footer,
     Header,
-    ActiveDelegates,
-    Footer
+    ActiveDelegates
   }
 };
 </script>
@@ -32,7 +31,6 @@ export default {
 <style scoped>
 .delegates-container {
   max-width: 88%;
-  margin-left: auto;
-  margin-right: auto;
+  @apply .mx-auto;
 }
 </style>

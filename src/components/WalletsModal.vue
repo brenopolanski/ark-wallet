@@ -80,8 +80,8 @@ export default {
     isOpen: Boolean
   },
   components: {
-    Loading,
-    Alert
+    Alert,
+    Loading
   },
   data() {
     return {

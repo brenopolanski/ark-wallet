@@ -18,8 +18,7 @@
 
 <script>
 import Loading from 'vue-loading-overlay';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import { Footer, Header } from '@/components';
 import { WalletDetails, WalletTransactions } from '@/components/wallet';
 import { WalletService } from '@/services';
 import { axiosHandleErrors } from '@/utils';
@@ -27,11 +26,11 @@ import { axiosHandleErrors } from '@/utils';
 export default {
   name: 'Wallet',
   components: {
-    Loading,
+    Footer,
     Header,
+    Loading,
     WalletDetails,
-    WalletTransactions,
-    Footer
+    WalletTransactions
   },
   data() {
     return {
@@ -82,7 +81,6 @@ export default {
 <style scoped>
 .wallet-container {
   max-width: 88%;
-  margin-left: auto;
-  margin-right: auto;
+  @apply .mx-auto;
 }
 </style>

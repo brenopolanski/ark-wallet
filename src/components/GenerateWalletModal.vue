@@ -81,7 +81,6 @@
 </template>
 
 <script>
-import moment from 'moment';
 import { mapGetters } from 'vuex';
 import Loading from 'vue-loading-overlay';
 import Alert from '@/components/Alert';
@@ -93,8 +92,8 @@ export default {
     isOpen: Boolean
   },
   components: {
-    Loading,
-    Alert
+    Alert,
+    Loading
   },
   data() {
     return {
@@ -113,9 +112,6 @@ export default {
   methods: {
     closeGenerateWalletModal() {
       this.$emit('closeGenerateWalletModal');
-    },
-    getDateNow() {
-      return moment().format('dddd, MMMM D, YYYY');
     },
     handleGenerateWallet() {
       try {

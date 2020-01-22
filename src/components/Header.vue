@@ -24,10 +24,8 @@ export default {
 }
 
 .header-container .header {
-  display: flex;
   max-width: 88%;
-  margin-left: auto;
-  margin-right: auto;
   margin-bottom: 50px;
+  @apply .flex .mx-auto;
 }
 </style>

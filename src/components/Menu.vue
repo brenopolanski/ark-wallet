@@ -26,8 +26,8 @@
 </template>
 
 <script>
-import { Slide } from 'vue-burger-menu';
 import { mapState } from 'vuex';
+import { Slide } from 'vue-burger-menu';
 import GenerateWalletModal from '@/components/GenerateWalletModal';
 
 export default {

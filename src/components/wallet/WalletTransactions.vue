@@ -63,7 +63,6 @@
 </template>
 
 <script>
-import moment from 'moment';
 import Loading from 'vue-loading-overlay';
 import Alert from '@/components/Alert';
 import { WalletService } from '@/services';
@@ -75,8 +74,8 @@ export default {
     wallet: Object
   },
   components: {
-    Loading,
-    Alert
+    Alert,
+    Loading
   },
   data() {
     return {
@@ -95,9 +94,6 @@ export default {
     this.loadTransactionsWallet();
   },
   methods: {
-    formatDate(value) {
-      return moment.unix(value).format('MM/DD/YYYY h:mm:ss A');
-    },
     loadTransactionsWallet() {
       if (this.wallet.hasOwnProperty('address')) {
         this.loading = true;

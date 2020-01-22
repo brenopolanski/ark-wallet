@@ -36,21 +36,20 @@
 </template>
 
 <script>
-import Loading from 'vue-loading-overlay';
 import { mapActions } from 'vuex';
+import Loading from 'vue-loading-overlay';
 import Alert from '@/components/Alert';
-import WalletsModal from '@/components/WalletsModal';
-import NetworkModal from '@/components/NetworkModal';
+import { NetworkModal, WalletsModal } from '@/components';
 import { WalletService } from '@/services';
 import { axiosHandleErrors, isEmpty } from '@/utils';
 
 export default {
   name: 'Home',
   components: {
-    Loading,
     Alert,
-    WalletsModal,
-    NetworkModal
+    Loading,
+    NetworkModal,
+    WalletsModal
   },
   data() {
     return {

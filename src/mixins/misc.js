@@ -3,6 +3,12 @@ import * as constants from '@/utils/constants';
 
 export default {
   methods: {
+    formatDate(value) {
+      return moment.unix(value).format('MM/DD/YYYY h:mm:ss A');
+    },
+    getDateNow() {
+      return moment().format('dddd, MMMM D, YYYY');
+    },
     readableNumber(value, digits = 0, omitSeparator = false) {
       if (omitSeparator) {
         return value.toFixed(digits);
