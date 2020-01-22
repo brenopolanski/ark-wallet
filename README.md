@@ -4,7 +4,7 @@
 
 > ARK wallet challenge assignment
 
-[![ark-wallet](./screenshots/web5.png)](http://arkwallet.netlify.com/)
+[![ark-wallet](./screenshots/web4.png)](http://arkwallet.netlify.com/)
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/d4947717-7997-417c-8f7e-cf589654b03a/deploy-status)](http://arkwallet.netlify.com)
 
@@ -72,6 +72,10 @@ $ yarn lint
 |                    **Wallet Summary 2**                     |                          **Menu**                           |
 
 | <img src="./screenshots/web7.png" width="440" height="247"> | <img src="./screenshots/web8.png" width="440" height="247"> |
+| :---------------------------------------------------------: | :---------------------------------------------------------: |
+|                  **Generate Wallet Modal**                  |                        **Delegates**                        |
+
+| <img src="./screenshots/web9.png" width="440" height="247"> | <img src="./screenshots/web10.png" width="440" height="247"> |
 | :---------------------------------------------------------: | :---------------------------------------------------------: |
 |                  **Generate Wallet Modal**                  |                        **Delegates**                        |
 
