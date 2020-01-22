@@ -37,13 +37,12 @@
 
 <script>
 import Loading from 'vue-loading-overlay';
-import { mapState, mapActions } from 'vuex';
+import { mapActions } from 'vuex';
 import Alert from '@/components/Alert';
 import WalletsModal from '@/components/WalletsModal';
 import NetworkModal from '@/components/NetworkModal';
 import { WalletService } from '@/services';
 import { axiosHandleErrors, isEmpty } from '@/utils';
-import * as constants from '@/utils/constants';
 
 export default {
   name: 'Home',
@@ -62,13 +61,6 @@ export default {
       error: false,
       errorMsg: ''
     };
-  },
-  computed: {
-    ...mapState(['network']),
-    arkName: () => constants.ARK_NAME,
-    selectedNetwork() {
-      return this.network.charAt(0).toUpperCase() + this.network.slice(1);
-    }
   },
   methods: {
     ...mapActions(['importWalletAddress']),

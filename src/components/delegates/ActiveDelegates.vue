@@ -21,11 +21,11 @@
             :to="{ name: 'wallets', params: { address: delegate.address } }"
           >{{ delegate.username }}</router-link>
         </div>
-        <div class="cell" data-title="Forged blocks">{{ formatNumber(delegate.blocks.produced) }}</div>
+        <div class="cell" data-title="Forged blocks">{{ readableNumber(delegate.blocks.produced) }}</div>
         <div
           class="cell"
           data-title="Last forged"
-        >{{ formatTimestampAgo(delegate.blocks.last.timestamp.unix) }}</div>
+        >{{ readableTimestampAgo(delegate.blocks.last.timestamp.unix) }}</div>
         <div class="cell" data-title="Status">
           <img
             class="active-icon mx-auto"
@@ -35,10 +35,8 @@
           />
         </div>
         <div class="cell" data-title="Votes">
-          <span
-            class="text-xs text-gray-600"
-          >{{ formatStringToPercentage(delegate.production.approval) }}</span>
-          {{ formatCryptoValue(delegate.votes) }} {{ arkSymbol }}
+          <span class="text-xs text-gray-600">{{ percentageString(delegate.production.approval) }}</span>
+          {{ readableCrypto(delegate.votes) }} {{ arkSymbol }}
         </div>
       </div>
     </div>
@@ -49,8 +47,7 @@
 import Loading from 'vue-loading-overlay';
 import Alert from '@/components/Alert';
 import { DelegateService } from '@/services';
-import { axiosHandleErrors, percentageString, readableCrypto, readableNumber, readableTimestampAgo } from '@/utils';
-import * as constants from '@/utils/constants';
+import { axiosHandleErrors } from '@/utils';
 
 export default {
   name: 'ActiveDelegates',
@@ -66,25 +63,10 @@ export default {
       errorMsg: ''
     };
   },
-  computed: {
-    arkSymbol: () => constants.ARK_SYMBOL
-  },
   mounted() {
     this.loadActiveDelegates();
   },
   methods: {
-    formatNumber(value) {
-      return readableNumber(value);
-    },
-    formatTimestampAgo(value) {
-      return readableTimestampAgo(value);
-    },
-    formatStringToPercentage(value) {
-      return percentageString(value);
-    },
-    formatCryptoValue(value) {
-      return readableCrypto(value);
-    },
     loadActiveDelegates() {
       this.loading = true;
       this.error = false;

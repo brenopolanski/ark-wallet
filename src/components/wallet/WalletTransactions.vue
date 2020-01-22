@@ -55,8 +55,8 @@
         <div
           class="cell text-red-600"
           data-title="Amount"
-        >{{ formatCryptoValue(transaction.amount) }} {{ arkSymbol }}</div>
-        <div class="cell" data-title="Fee">{{ formatCryptoValue(transaction.fee) }} {{ arkSymbol }}</div>
+        >{{ readableCrypto(transaction.amount) }} {{ arkSymbol }}</div>
+        <div class="cell" data-title="Fee">{{ readableCrypto(transaction.fee) }} {{ arkSymbol }}</div>
       </div>
     </div>
   </section>
@@ -67,8 +67,7 @@ import moment from 'moment';
 import Loading from 'vue-loading-overlay';
 import Alert from '@/components/Alert';
 import { WalletService } from '@/services';
-import { axiosHandleErrors, readableCrypto } from '@/utils';
-import * as constants from '@/utils/constants';
+import { axiosHandleErrors } from '@/utils';
 
 export default {
   name: 'WalletTransactions',
@@ -87,9 +86,6 @@ export default {
       errorMsg: ''
     };
   },
-  computed: {
-    arkSymbol: () => constants.ARK_SYMBOL
-  },
   watch: {
     wallet() {
       this.loadTransactionsWallet();
@@ -101,9 +97,6 @@ export default {
   methods: {
     formatDate(value) {
       return moment.unix(value).format('MM/DD/YYYY h:mm:ss A');
-    },
-    formatCryptoValue(value) {
-      return readableCrypto(value);
     },
     loadTransactionsWallet() {
       if (this.wallet.hasOwnProperty('address')) {

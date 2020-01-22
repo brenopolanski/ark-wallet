@@ -24,7 +24,7 @@
           <span class="text-gray-600">Balance (ARK)</span>
         </div>
         <div class="w-full text-white">
-          <span class="font-semibold truncate">{{ formatBalance(wallet.balance) }}</span>
+          <span class="font-semibold truncate">{{ readableCrypto(wallet.balance) }}</span>
         </div>
       </div>
       <div v-if="showPublicKey" class="w-full sm:w-5/6 md:w-5/6 lg:w-5/6 xl:w-5/6 pr-8">
@@ -60,8 +60,6 @@
 </template>
 
 <script>
-import { readableCrypto } from '@/utils';
-
 export default {
   name: 'WalletDetails',
   props: {
@@ -81,9 +79,6 @@ export default {
     }
   },
   methods: {
-    formatBalance(value) {
-      return readableCrypto(value);
-    },
     togglePublicKey() {
       this.showPublicKey = !this.showPublicKey;
     },

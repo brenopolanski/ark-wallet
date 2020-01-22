@@ -20,12 +20,12 @@ export default {
   },
   mounted() {
     api.defaults.baseURL = this.apiUrl;
-    this.setConfigNetwork();
+    this.saveConfigFromNetwork();
     this.setWallet();
   },
   methods: {
     ...mapActions(['setNetwork', 'importWalletAddress']),
-    setConfigNetwork() {
+    saveConfigFromNetwork() {
       const network = storage.get('network') || this.network;
       this.setNetwork(network);
     },

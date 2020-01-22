@@ -37,7 +37,7 @@
                 <div class="w-full truncate">
                   <span class="font-semibold mr-2">{{ wallet.address }}</span>
                 </div>
-                <div class="w-full truncate">{{ arkSymbol }} {{ formatBalance(wallet.balance) }}</div>
+                <div class="w-full truncate">{{ arkSymbol }} {{ readableCrypto(wallet.balance) }}</div>
               </div>
               <div class="w-1/6">
                 <div class="w-full h-full flex items-center justify-center">
@@ -72,8 +72,7 @@
 import Loading from 'vue-loading-overlay';
 import Alert from '@/components/Alert';
 import { WalletService } from '@/services';
-import { axiosHandleErrors, readableCrypto } from '@/utils';
-import * as constants from '@/utils/constants';
+import { axiosHandleErrors } from '@/utils';
 
 export default {
   name: 'WalletsModal',
@@ -93,18 +92,12 @@ export default {
       errorMsg: ''
     };
   },
-  computed: {
-    arkSymbol: () => constants.ARK_SYMBOL
-  },
   mounted() {
     this.loadAllWallets();
   },
   methods: {
     closeWalletsModal() {
       this.$emit('closeWalletsModal');
-    },
-    formatBalance(value) {
-      return readableCrypto(value);
     },
     handleFetchFor(value) {
       this.fetchFor = value;

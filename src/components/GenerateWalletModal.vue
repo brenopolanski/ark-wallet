@@ -82,11 +82,10 @@
 
 <script>
 import moment from 'moment';
-import { mapState, mapGetters } from 'vuex';
+import { mapGetters } from 'vuex';
 import Loading from 'vue-loading-overlay';
 import Alert from '@/components/Alert';
 import { generateWallet } from '@/utils';
-import * as constants from '@/utils/constants';
 
 export default {
   name: 'GenerateWalletModal',
@@ -106,12 +105,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(['network']),
-    ...mapGetters(['networkVersion']),
-    arkName: () => constants.ARK_NAME,
-    selectedNetwork() {
-      return this.network.charAt(0).toUpperCase() + this.network.slice(1);
-    }
+    ...mapGetters(['networkVersion'])
   },
   mounted() {
     this.handleGenerateWallet();

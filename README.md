@@ -53,6 +53,7 @@ $ yarn lint
 | [@arkecosystem/crypto](https://www.npmjs.com/package/@arkecosystem/crypto) | ARK - Crypto |
 | [bip39](https://github.com/bitcoinjs/bip39) | JavaScript implementation of Bitcoin BIP39: Mnemonic code for generating deterministic keys. |
 | [more-entropy](https://github.com/keybase/more-entropy) | Entropy collection in JavaScript for your node and/or browser apps. |
+| [lodash.merge](https://www.npmjs.com/package/lodash.merge) | The Lodash method _.merge exported as a Node.js module. |
 
 ## Screenshots ([mockups](./mockups))
 

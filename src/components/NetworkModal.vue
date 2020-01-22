@@ -13,7 +13,7 @@
           <div class="flex items-center">
             <div class="inline-block relative w-full sm:w-4/5 mr-3">
               <select
-                v-model="selectedNetwork"
+                v-model="selectedPrimaryNetwork"
                 class="hover:border-gray-500 focus:outline-none focus:shadow-outline container-inputs"
               >
                 <option
@@ -69,15 +69,14 @@ export default {
   data() {
     return {
       networks: constants.NETWORKS,
-      selectedNetwork: constants.NETWORK_MAINNET
+      selectedPrimaryNetwork: constants.NETWORK_MAINNET
     };
   },
   computed: {
-    ...mapState(['network']),
-    arkName: () => constants.ARK_NAME
+    ...mapState(['network'])
   },
   mounted() {
-    this.selectedNetwork = this.network;
+    this.selectedPrimaryNetwork = this.network;
   },
   methods: {
     ...mapActions(['setNetwork']),
@@ -85,7 +84,7 @@ export default {
       this.$emit('closeNetworkModal');
     },
     saveConfigFromNetwork() {
-      this.setNetwork(this.selectedNetwork);
+      this.setNetwork(this.selectedPrimaryNetwork);
       this.closeNetworkModal();
     }
   }

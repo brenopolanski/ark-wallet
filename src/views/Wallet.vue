@@ -17,14 +17,12 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
 import Loading from 'vue-loading-overlay';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { WalletDetails, WalletTransactions } from '@/components/wallet';
 import { WalletService } from '@/services';
 import { axiosHandleErrors } from '@/utils';
-import * as constants from '@/utils/constants';
 
 export default {
   name: 'Wallet',
@@ -42,11 +40,6 @@ export default {
     };
   },
   computed: {
-    ...mapState(['network']),
-    arkName: () => constants.ARK_NAME,
-    selectedNetwork() {
-      return this.network.charAt(0).toUpperCase() + this.network.slice(1);
-    },
     walletAddressParam() {
       return this.$route.params.address;
     }

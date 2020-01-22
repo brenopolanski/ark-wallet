@@ -1,6 +1,3 @@
-import moment from 'moment';
-import * as constants from './constants';
-
 export const isEmpty = value => {
   return (
     value === undefined ||
@@ -8,35 +5,6 @@ export const isEmpty = value => {
     (typeof value === 'object' && Object.keys(value).length === 0) ||
     (typeof value === 'string' && value.trim().length === 0)
   );
-};
-
-export const percentageString = (value, decimals = 2) => {
-  if (typeof value !== 'undefined') {
-    return (value / 100).toLocaleString(constants.LOCALE, {
-      minimumFractionDigits: decimals,
-      maximumFractionDigits: decimals,
-      style: 'percent'
-    });
-  }
-
-  return '-';
-};
-
-export const readableNumber = (value, digits = 0, omitSeparator = false) => {
-  if (omitSeparator) {
-    return value.toFixed(digits);
-  }
-
-  return value.toLocaleString(constants.LOCALE, {
-    minimumFractionDigits: digits,
-    maximumFractionDigits: digits
-  });
-};
-
-export const readableTimestampAgo = (time, compareTime) => {
-  const momentTime = moment.unix(time).local();
-
-  return typeof compareTime !== 'undefined' ? momentTime.from(moment.unix(compareTime).local()) : momentTime.fromNow();
 };
 
 // Reference: https://github.com/axios/axios#handling-errors
