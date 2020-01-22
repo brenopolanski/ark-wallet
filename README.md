@@ -4,7 +4,7 @@
 
 > ARK wallet challenge assignment
 
-[![ark-wallet](./screenshots/web4.png)](http://arkwallet.netlify.com/)
+[![ark-wallet](./screenshots/web04.png)](http://arkwallet.netlify.com/)
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/d4947717-7997-417c-8f7e-cf589654b03a/deploy-status)](http://arkwallet.netlify.com)
 
@@ -60,24 +60,24 @@ $ yarn lint
 ### Browser App
 
 | <img src="./screenshots/web01.png" width="440" height="247"> | <img src="./screenshots/web02.png" width="440" height="247"> |
-| :---------------------------------------------------------: | :---------------------------------------------------------: |
-|                      **Import Wallet**                      |                 **All / Top Wallets Modal**                 |
+| :----------------------------------------------------------: | :----------------------------------------------------------: |
+|                      **Import Wallet**                       |                 **All / Top Wallets Modal**                  |
 
 | <img src="./screenshots/web03.png" width="440" height="247"> | <img src="./screenshots/web04.png" width="440" height="247"> |
-| :---------------------------------------------------------: | :---------------------------------------------------------: |
-|                 **Network Settings Modal**                  |                    **Wallet Summary 1**                     |
+| :----------------------------------------------------------: | :----------------------------------------------------------: |
+|                  **Network Settings Modal**                  |                      **Wallet Summary**                      |
 
 | <img src="./screenshots/web05.png" width="440" height="247"> | <img src="./screenshots/web06.png" width="440" height="247"> |
-| :---------------------------------------------------------: | :---------------------------------------------------------: |
-|                    **Wallet Summary 2**                     |                          **Menu**                           |
+| :----------------------------------------------------------: | :----------------------------------------------------------: |
+|                  **Delegate - Vote Modal**                   |                 **Delegate - Voters Modal**                  |
 
 | <img src="./screenshots/web07.png" width="440" height="247"> | <img src="./screenshots/web08.png" width="440" height="247"> |
-| :---------------------------------------------------------: | :---------------------------------------------------------: |
-|                  **Generate Wallet Modal**                  |                        **Delegates**                        |
+| :----------------------------------------------------------: | :----------------------------------------------------------: |
+|                  **Favorite Wallets Modal**                  |                        **Delegates**                         |
 
 | <img src="./screenshots/web09.png" width="440" height="247"> | <img src="./screenshots/web10.png" width="440" height="247"> |
-| :---------------------------------------------------------: | :---------------------------------------------------------: |
-|                  **Generate Wallet Modal**                  |                        **Delegates**                        |
+| :----------------------------------------------------------: | :----------------------------------------------------------: |
+|                           **Menu**                           |                  **Generate Wallet Modal**                   |
 
 ### Mobile App
 
