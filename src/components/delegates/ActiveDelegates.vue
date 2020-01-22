@@ -88,14 +88,14 @@ export default {
 
 <style scoped>
 .active-delegates-container {
-  background: #fff;
+  background: var(--color-panel);
   padding: 30px;
   border-radius: 5px;
 }
 
 @media screen and (max-width: 1200px) {
   .active-icon {
-    margin: 0;
+    @apply .m-0;
   }
 }
 </style>

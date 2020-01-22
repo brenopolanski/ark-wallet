@@ -3,4 +3,8 @@
   Helvetica, Arial, sans-serif;
   --color-primary: #fe463a;
   --color-secondary:  #e1382d;
+  --color-dark-gray: #333;
+  --color-medium-gray: #666;
+  --color-light-gray: #999;
+  --color-panel: #fff;
 }

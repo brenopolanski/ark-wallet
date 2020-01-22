@@ -117,7 +117,7 @@ export default {
 
 <style scoped>
 .wallet-transactions-container {
-  background: #fff;
+  background: var(--color-panel);
   padding: 30px;
   border-radius: 5px;
 }

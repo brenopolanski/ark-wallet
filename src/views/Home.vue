@@ -104,14 +104,12 @@ export default {
 
 <style scoped>
 .home-container {
-  height: 100%;
-  @apply .flex .justify-center .items-center;
+  @apply .h-full .flex .justify-center .items-center;
 }
 
 .home-container form {
-  width: 100%;
   max-width: 300px;
-  @apply .flex .flex-col;
+  @apply .w-full .flex .flex-col;
 }
 
 .home-container form h3 {
@@ -126,10 +124,10 @@ export default {
   height: 48px;
   padding: 0 20px;
   font-size: 16px;
-  color: #666;
+  color: var(--color-medium-gray);
 }
 
 .home-container form input::placeholder {
-  color: #999;
+  color: var(--color-light-gray);
 }
 </style>

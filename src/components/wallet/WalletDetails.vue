@@ -99,7 +99,7 @@ export default {
 
 <style scoped>
 .wallet-details-container {
-  background: #333;
+  background: var(--color-dark-gray);
   padding: 30px;
   border-radius: 5px;
 }
