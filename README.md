@@ -59,33 +59,33 @@ $ yarn lint
 
 ### Browser App
 
-| <img src="./screenshots/web1.png" width="440" height="247"> | <img src="./screenshots/web2.png" width="440" height="247"> |
+| <img src="./screenshots/web01.png" width="440" height="247"> | <img src="./screenshots/web02.png" width="440" height="247"> |
 | :---------------------------------------------------------: | :---------------------------------------------------------: |
 |                      **Import Wallet**                      |                 **All / Top Wallets Modal**                 |
 
-| <img src="./screenshots/web3.png" width="440" height="247"> | <img src="./screenshots/web4.png" width="440" height="247"> |
+| <img src="./screenshots/web03.png" width="440" height="247"> | <img src="./screenshots/web04.png" width="440" height="247"> |
 | :---------------------------------------------------------: | :---------------------------------------------------------: |
 |                 **Network Settings Modal**                  |                    **Wallet Summary 1**                     |
 
-| <img src="./screenshots/web5.png" width="440" height="247"> | <img src="./screenshots/web6.png" width="440" height="247"> |
+| <img src="./screenshots/web05.png" width="440" height="247"> | <img src="./screenshots/web06.png" width="440" height="247"> |
 | :---------------------------------------------------------: | :---------------------------------------------------------: |
 |                    **Wallet Summary 2**                     |                          **Menu**                           |
 
-| <img src="./screenshots/web7.png" width="440" height="247"> | <img src="./screenshots/web8.png" width="440" height="247"> |
+| <img src="./screenshots/web07.png" width="440" height="247"> | <img src="./screenshots/web08.png" width="440" height="247"> |
 | :---------------------------------------------------------: | :---------------------------------------------------------: |
 |                  **Generate Wallet Modal**                  |                        **Delegates**                        |
 
-| <img src="./screenshots/web9.png" width="440" height="247"> | <img src="./screenshots/web10.png" width="440" height="247"> |
+| <img src="./screenshots/web09.png" width="440" height="247"> | <img src="./screenshots/web10.png" width="440" height="247"> |
 | :---------------------------------------------------------: | :---------------------------------------------------------: |
 |                  **Generate Wallet Modal**                  |                        **Delegates**                        |
 
 ### Mobile App
 
 <p align="center">
-  <img src="./screenshots/mobile1.jpeg" width="210" />
-  <img src="./screenshots/mobile2.jpeg" width="210" />
-  <img src="./screenshots/mobile3.jpeg" width="210" />
-  <img src="./screenshots/mobile4.jpeg" width="210" />
+  <img src="./screenshots/mobile01.jpeg" width="210" />
+  <img src="./screenshots/mobile02.jpeg" width="210" />
+  <img src="./screenshots/mobile03.jpeg" width="210" />
+  <img src="./screenshots/mobile04.jpeg" width="210" />
 </p>
 
 ## Contributing
