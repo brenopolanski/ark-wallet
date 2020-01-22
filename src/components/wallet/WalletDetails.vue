@@ -9,6 +9,7 @@
           <span class="font-semibold truncate mr-2">{{ wallet.address }}</span>
           <button
             type="button"
+            v-show="wallet.address"
             v-tooltip="'Copy'"
             v-clipboard:copy="wallet.address"
             v-clipboard:success="onCopy"
@@ -34,6 +35,7 @@
           <span class="font-semibold mr-2 truncate">{{ wallet.publicKey }}</span>
           <button
             type="button"
+            v-show="wallet.publicKey"
             v-tooltip="'Copy'"
             v-clipboard:copy="wallet.publicKey"
             v-clipboard:success="onCopy"

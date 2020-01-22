@@ -31,30 +31,26 @@
         </div>
         <div class="cell" data-title="Timestamp">{{ formatDate(transaction.timestamp.unix) }}</div>
         <div class="cell" data-title="Sender">
-          <a
+          <router-link
             class="text-blue-500 hover:text-blue-700 hover:underline hidden sm:hidden md:hidden lg:block xl:block"
             v-tooltip="transaction.sender"
-            :href="`https://explorer.ark.io/wallets/${transaction.sender}`"
-            target="_blank"
-          >{{ transaction.sender | truncate(15) }}</a>
-          <a
+            :to="{ name: 'wallets', params: { address: transaction.sender } }"
+          >{{ transaction.sender | truncate(15) }}</router-link>
+          <router-link
             class="text-blue-500 hover:text-blue-700 hover:underline truncate block sm:block md:block lg:hidden xl:hidden"
-            :href="`https://explorer.ark.io/wallets/${transaction.sender}`"
-            target="_blank"
-          >{{ transaction.sender }}</a>
+            :to="{ name: 'wallets', params: { address: transaction.sender } }"
+          >{{ transaction.sender }}</router-link>
         </div>
         <div class="cell" data-title="Recipient">
-          <a
+          <router-link
             class="text-blue-500 hover:text-blue-700 hover:underline hidden sm:hidden md:hidden lg:block xl:block"
             v-tooltip="transaction.recipient"
-            :href="`https://explorer.ark.io/wallets/${transaction.recipient}`"
-            target="_blank"
-          >{{ transaction.recipient | truncate(15) }}</a>
-          <a
+            :to="{ name: 'wallets', params: { address: transaction.recipient } }"
+          >{{ transaction.recipient | truncate(15) }}</router-link>
+          <router-link
             class="text-blue-500 hover:text-blue-700 hover:underline truncate block sm:block md:block lg:hidden xl:hidden"
-            :href="`https://explorer.ark.io/wallets/${transaction.recipient}`"
-            target="_blank"
-          >{{ transaction.recipient }}</a>
+            :to="{ name: 'wallets', params: { address: transaction.recipient } }"
+          >{{ transaction.recipient }}</router-link>
         </div>
         <div
           class="cell text-red-600"
@@ -67,11 +63,10 @@
 </template>
 
 <script>
-import axios from 'axios';
 import moment from 'moment';
-import { mapGetters } from 'vuex';
 import Loading from 'vue-loading-overlay';
 import Alert from '@/components/Alert';
+import { WalletService } from '@/services';
 import { axiosHandleErrors, readableCrypto } from '@/utils';
 import * as constants from '@/utils/constants';
 
@@ -93,35 +88,38 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['apiUrl']),
     arkSymbol: () => constants.ARK_SYMBOL
+  },
+  watch: {
+    wallet() {
+      this.loadTransactionsWallet();
+    }
   },
   mounted() {
     this.loadTransactionsWallet();
   },
   methods: {
     formatDate(value) {
-      return moment.unix(value).format(constants.DATE_FORMAT);
+      return moment.unix(value).format('MM/DD/YYYY h:mm:ss A');
     },
     formatCryptoValue(value) {
       return readableCrypto(value);
     },
-    async loadTransactionsWallet() {
-      try {
+    loadTransactionsWallet() {
+      if (this.wallet.hasOwnProperty('address')) {
         this.loading = true;
         this.error = false;
 
-        if (this.wallet.address) {
-          const response = await axios.get(`${this.apiUrl}/wallets/${this.wallet.address}/transactions`);
-          const { data } = response.data;
-
-          this.transactions = data;
-        }
-      } catch (error) {
-        this.error = true;
-        this.errorMsg = axiosHandleErrors(error);
-      } finally {
-        this.loading = false;
+        WalletService.getTransactionsWallet(this.wallet.address)
+          .then(res => {
+            const { data } = res.data;
+            this.transactions = data;
+          })
+          .catch(error => {
+            this.error = true;
+            this.errorMsg = axiosHandleErrors(error);
+          })
+          .finally(() => (this.loading = false));
       }
     }
   }

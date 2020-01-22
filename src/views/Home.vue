@@ -7,27 +7,41 @@
       <input v-model="walletAddress" placeholder="Enter wallet address or public key" />
       <div class="flex flex-col">
         <button type="submit" class="btn btn-primary mt-2">Import Wallet</button>
-        <button type="button" class="btn btn-secondary mt-2" @click="toggleWalletsModal">Search Wallet</button>
+        <button
+          type="button"
+          class="btn btn-secondary mt-2"
+          @click="toggleWalletsModal"
+        >Search Wallet</button>
       </div>
       <div class="flex flex-wrap justify-center items-center mt-10">
-        <button type="button" class="text-gray-500 inline-link hover:underline" @click="toggleNetworkModal">
-          Choose Network: {{ arkName }} | {{ selectedNetwork }}
-        </button>
+        <button
+          type="button"
+          class="text-gray-500 inline-link hover:underline"
+          @click="toggleNetworkModal"
+        >Choose Network: {{ arkName }} | {{ selectedNetwork }}</button>
       </div>
     </form>
     <loading loader="dots" color="#fe463a" :active.sync="loading" />
-    <WalletsModal v-if="showWalletsModal" :is-open="showWalletsModal" @closeWalletsModal="toggleWalletsModal" />
-    <NetworkModal v-if="showNetworkModal" :is-open="showNetworkModal" @closeNetworkModal="toggleNetworkModal" />
+    <WalletsModal
+      v-if="showWalletsModal"
+      :is-open="showWalletsModal"
+      @closeWalletsModal="toggleWalletsModal"
+    />
+    <NetworkModal
+      v-if="showNetworkModal"
+      :is-open="showNetworkModal"
+      @closeNetworkModal="toggleNetworkModal"
+    />
   </div>
 </template>
 
 <script>
-import axios from 'axios';
 import Loading from 'vue-loading-overlay';
-import { mapState, mapGetters, mapActions } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 import Alert from '@/components/Alert';
 import WalletsModal from '@/components/WalletsModal';
 import NetworkModal from '@/components/NetworkModal';
+import { WalletService } from '@/services';
 import { axiosHandleErrors, isEmpty } from '@/utils';
 import * as constants from '@/utils/constants';
 
@@ -51,41 +65,46 @@ export default {
   },
   computed: {
     ...mapState(['network']),
-    ...mapGetters(['apiUrl']),
     arkName: () => constants.ARK_NAME,
     selectedNetwork() {
       return this.network.charAt(0).toUpperCase() + this.network.slice(1);
     }
   },
   methods: {
-    ...mapActions(['importWallet']),
+    ...mapActions(['importWalletAddress']),
     toggleWalletsModal() {
       this.showWalletsModal = !this.showWalletsModal;
     },
     toggleNetworkModal() {
       this.showNetworkModal = !this.showNetworkModal;
     },
-    async handleSubmit() {
-      try {
+    handleSubmit() {
+      if (!isEmpty(this.walletAddress)) {
         this.loading = true;
         this.error = false;
 
-        if (!isEmpty(this.walletAddress)) {
-          const response = await axios.get(`${this.apiUrl}/wallets/${this.walletAddress}`);
-          const { data } = response.data;
+        WalletService.getWallet(this.walletAddress)
+          .then(res => {
+            const { data } = res.data;
 
-          this.importWallet(data);
-          this.$router.push({ path: `/wallets/${this.walletAddress}` });
-        } else {
-          this.$toast.error('Enter wallet address or public key', {
-            position: 'top'
-          });
-        }
-      } catch (error) {
-        this.error = true;
-        this.errorMsg = axiosHandleErrors(error);
-      } finally {
-        this.loading = false;
+            if (res.status === 200) {
+              const { address } = data;
+              this.importWalletAddress(address);
+              this.$router.push({ name: 'wallets', params: { address } });
+            } else {
+              this.error = true;
+              this.errorMsg = res.data.message;
+            }
+          })
+          .catch(error => {
+            this.error = true;
+            this.errorMsg = axiosHandleErrors(error);
+          })
+          .finally(() => (this.loading = false));
+      } else {
+        this.$toast.error('Enter wallet address or public key', {
+          position: 'top'
+        });
       }
     }
   }

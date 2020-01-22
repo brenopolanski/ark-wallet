@@ -1,14 +1,18 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import * as types from './types';
+import { storage } from '@/services/storage';
 import * as constants from '@/utils/constants';
+import * as types from './types';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
     network: constants.NETWORK_MAINNET,
-    wallet: {}
+    wallet: {
+      address: '',
+      bookmarks: []
+    }
   },
   getters: {
     apiUrl: state => {
@@ -16,8 +20,7 @@ export default new Vuex.Store({
     },
     networkVersion: state => state.network === constants.NETWORK_MAINNET
       ? constants.NETWORK_VERSION[constants.NETWORK_MAINNET]
-      : constants.NETWORK_VERSION[constants.NETWORK_DEVNET],
-    walletIsEmpty: state => !state.wallet.hasOwnProperty('address')
+      : constants.NETWORK_VERSION[constants.NETWORK_DEVNET]
   },
   actions: {
     setNetwork({ commit }, value) {
@@ -26,19 +29,21 @@ export default new Vuex.Store({
         value
       });
     },
-    importWallet({ commit }, value) {
+    importWalletAddress({ commit }, value) {
       commit({
-        type: types.IMPORT_WALLET,
+        type: types.IMPORT_WALLET_ADDRESS,
         value
       });
     }
   },
   mutations: {
     [types.SET_NETWORK](state, payload) {
+      storage.set('network', payload.value);
       state.network = payload.value;
     },
-    [types.IMPORT_WALLET](state, payload) {
-      state.wallet = payload.value;
+    [types.IMPORT_WALLET_ADDRESS](state, payload) {
+      storage.set('wallet_address', payload.value);
+      state.wallet.address = payload.value;
     }
   }
 });

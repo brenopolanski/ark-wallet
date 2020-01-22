@@ -14,7 +14,13 @@
       </div>
       <div v-for="delegate of delegates" :key="delegate.address" class="row">
         <div class="cell" data-title="Rank">{{ delegate.rank }}</div>
-        <div class="cell" data-title="Username">{{ delegate.username }}</div>
+        <div class="cell" data-title="Username">
+          <router-link
+            class="text-blue-500 hover:text-blue-700 hover:underline"
+            v-tooltip="delegate.address"
+            :to="{ name: 'wallets', params: { address: delegate.address } }"
+          >{{ delegate.username }}</router-link>
+        </div>
         <div class="cell" data-title="Forged blocks">{{ formatNumber(delegate.blocks.produced) }}</div>
         <div
           class="cell"
@@ -40,18 +46,17 @@
 </template>
 
 <script>
-import axios from 'axios';
-import { mapGetters } from 'vuex';
 import Loading from 'vue-loading-overlay';
 import Alert from '@/components/Alert';
+import { DelegateService } from '@/services';
 import { axiosHandleErrors, percentageString, readableCrypto, readableNumber, readableTimestampAgo } from '@/utils';
 import * as constants from '@/utils/constants';
 
 export default {
   name: 'ActiveDelegates',
   components: {
-    Loading,
-    Alert
+    Alert,
+    Loading
   },
   data() {
     return {
@@ -62,7 +67,6 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['apiUrl']),
     arkSymbol: () => constants.ARK_SYMBOL
   },
   mounted() {
@@ -81,25 +85,20 @@ export default {
     formatCryptoValue(value) {
       return readableCrypto(value);
     },
-    async loadActiveDelegates() {
-      try {
-        this.loading = true;
-        this.error = false;
+    loadActiveDelegates() {
+      this.loading = true;
+      this.error = false;
 
-        const response = await axios.get(`${this.apiUrl}/delegates`, {
-          params: {
-            limit: constants.ACTIVE_DELEGATES_SIZE
-          }
-        });
-        const { data } = response.data;
-
-        this.delegates = data;
-      } catch (error) {
-        this.error = true;
-        this.errorMsg = axiosHandleErrors(error);
-      } finally {
-        this.loading = false;
-      }
+      DelegateService.getActiveDelegates()
+        .then(res => {
+          const { data } = res;
+          this.delegates = data;
+        })
+        .catch(error => {
+          this.error = true;
+          this.errorMsg = axiosHandleErrors(error);
+        })
+        .finally(() => (this.loading = false));
     }
   }
 };

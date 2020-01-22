@@ -72,9 +72,9 @@
 import { mapGetters } from 'vuex';
 import Loading from 'vue-loading-overlay';
 import Alert from '@/components/Alert';
+import { WalletService } from '@/services';
 import { axiosHandleErrors, readableCrypto } from '@/utils';
 import * as constants from '@/utils/constants';
-import WalletService from '@/services/WalletService';
 
 export default {
   name: 'WalletsModal',
@@ -121,9 +121,9 @@ export default {
       this.loading = true;
       this.error = false;
 
-      WalletService.getWallets()
+      WalletService.getAllWallets()
         .then(res => {
-          const { data } = res.data;
+          const { data } = res;
           this.wallets = data;
         })
         .catch(error => {
@@ -138,7 +138,7 @@ export default {
 
       WalletService.getTopWallets()
         .then(res => {
-          const { data } = res.data;
+          const { data } = res;
           this.wallets = data;
         })
         .catch(error => {

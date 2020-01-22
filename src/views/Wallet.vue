@@ -4,8 +4,11 @@
     <div class="wallet-container">
       <div class="flex justify-between">
         <h1 class="font-bold text-3xl">Wallet Summary</h1>
-        <span class="flex items-center text-gray-500 inline-link">Network: {{ arkName }} | {{ selectedNetwork }}</span>
+        <span
+          class="flex items-center text-gray-500 inline-link"
+        >Network: {{ arkName }} | {{ selectedNetwork }}</span>
       </div>
+      <loading loader="dots" color="#fe463a" :active.sync="loading" />
       <WalletDetails :wallet="wallet" />
       <WalletTransactions :wallet="wallet" />
     </div>
@@ -14,51 +17,70 @@
 </template>
 
 <script>
-import axios from 'axios';
-import { mapState, mapGetters, mapActions } from 'vuex';
+import { mapState } from 'vuex';
+import Loading from 'vue-loading-overlay';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { WalletDetails, WalletTransactions } from '@/components/wallet';
+import { WalletService } from '@/services';
 import { axiosHandleErrors } from '@/utils';
 import * as constants from '@/utils/constants';
 
 export default {
   name: 'Wallet',
   components: {
+    Loading,
     Header,
     WalletDetails,
     WalletTransactions,
     Footer
   },
+  data() {
+    return {
+      wallet: {},
+      loading: false
+    };
+  },
   computed: {
-    ...mapState(['network', 'wallet']),
-    ...mapGetters(['apiUrl', 'walletIsEmpty']),
+    ...mapState(['network']),
     arkName: () => constants.ARK_NAME,
     selectedNetwork() {
       return this.network.charAt(0).toUpperCase() + this.network.slice(1);
     },
-    addressParam() {
+    walletAddressParam() {
       return this.$route.params.address;
     }
   },
-  mounted() {
-    if (this.walletIsEmpty) {
+  watch: {
+    walletAddressParam() {
       this.loadWalletFromAddressParam();
     }
   },
+  mounted() {
+    this.loadWalletFromAddressParam();
+  },
   methods: {
-    ...mapActions(['importWallet']),
-    async loadWalletFromAddressParam() {
-      try {
-        const response = await axios.get(`${this.apiUrl}/wallets/${this.addressParam}`);
-        const { data } = response.data;
+    loadWalletFromAddressParam() {
+      this.loading = true;
 
-        this.importWallet(data);
-      } catch (error) {
-        this.$toast.error(axiosHandleErrors(error), {
-          position: 'top'
-        });
-      }
+      WalletService.getWallet(this.walletAddressParam)
+        .then(res => {
+          const { data } = res.data;
+
+          if (res.status === 200) {
+            this.wallet = data;
+          } else {
+            this.$toast.error(res.data.message, {
+              position: 'top'
+            });
+          }
+        })
+        .catch(error => {
+          this.$toast.error(axiosHandleErrors(error), {
+            position: 'top'
+          });
+        })
+        .finally(() => (this.loading = false));
     }
   }
 };

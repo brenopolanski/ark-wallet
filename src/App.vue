@@ -5,8 +5,9 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import api from '@/services/api';
+import { storage } from '@/services/storage';
 
 export default {
   name: 'App',
@@ -18,6 +19,13 @@ export default {
   },
   mounted() {
     api.defaults.baseURL = this.apiUrl;
+    this.setConfigNetwork();
+  },
+  methods: {
+    ...mapActions(['setNetwork']),
+    setConfigNetwork() {
+      this.setNetwork(storage.get('network'));
+    }
   }
 };
 </script>

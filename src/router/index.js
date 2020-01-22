@@ -29,7 +29,7 @@ const router = new Router({
     },
     {
       path: '/wallets/:address',
-      name: 'wallet',
+      name: 'wallets',
       component: WalletComponent,
       meta: { title: route => getTitle(`Wallet ${route.params.address}`) }
     },
