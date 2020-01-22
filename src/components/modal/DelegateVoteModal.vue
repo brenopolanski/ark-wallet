@@ -54,7 +54,7 @@ import { WalletService } from '@/services';
 import { axiosHandleErrors } from '@/utils';
 
 export default {
-  name: 'WalletsModal',
+  name: 'DelegateVoteModal',
   props: {
     delegate: Object,
     isOpen: Boolean
@@ -82,22 +82,28 @@ export default {
       this.loading = true;
       this.error = false;
 
-      WalletService.getWallet(this.delegate.vote)
-        .then(res => {
-          const { data } = res.data;
+      if (this.delegate.vote) {
+        WalletService.getWallet(this.delegate.vote)
+          .then(res => {
+            const { data } = res.data;
 
-          if (res.status === 200) {
-            this.vote = data;
-          } else {
+            if (res.status === 200) {
+              this.vote = data;
+            } else {
+              this.error = true;
+              this.errorMsg = res.data.message;
+            }
+          })
+          .catch(error => {
             this.error = true;
-            this.errorMsg = res.data.message;
-          }
-        })
-        .catch(error => {
-          this.error = true;
-          this.errorMsg = axiosHandleErrors(error);
-        })
-        .finally(() => (this.loading = false));
+            this.errorMsg = axiosHandleErrors(error);
+          })
+          .finally(() => (this.loading = false));
+      } else {
+        this.loading = false;
+        this.error = true;
+        this.errorMsg = 'No vote found';
+      }
     }
   }
 };

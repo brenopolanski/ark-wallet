@@ -46,7 +46,7 @@ import { DelegateService } from '@/services';
 import { axiosHandleErrors } from '@/utils';
 
 export default {
-  name: 'WalletsModal',
+  name: 'DelegateVotersModal',
   props: {
     delegate: Object,
     isOpen: Boolean

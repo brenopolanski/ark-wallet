@@ -33,7 +33,7 @@
 <script>
 import { mapState } from 'vuex';
 import { Slide } from 'vue-burger-menu';
-import { FavoriteWalletsModal, GenerateWalletModal } from '@/components';
+import { FavoriteWalletsModal, GenerateWalletModal } from '@/components/modal';
 
 export default {
   name: 'Menu',

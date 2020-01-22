@@ -25,7 +25,7 @@
 import { mapActions } from 'vuex';
 import Loading from 'vue-loading-overlay';
 import Alert from '@/components/Alert';
-import { NetworkModal, WalletsModal } from '@/components';
+import { NetworkModal, WalletsModal } from '@/components/modal';
 import { WalletService } from '@/services';
 import { axiosHandleErrors, isEmpty } from '@/utils';
 
