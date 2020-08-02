@@ -81,7 +81,7 @@ $ yarn lint
 
 ### Mobile App
 
-<p align="center">
+<p align="left">
   <img src="./screenshots/mobile01.jpeg" width="210" />
   <img src="./screenshots/mobile02.jpeg" width="210" />
   <img src="./screenshots/mobile03.jpeg" width="210" />
