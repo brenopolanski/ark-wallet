@@ -14,7 +14,7 @@
     "bip39": "^3.0.2",
     "core-js": "^3.4.4",
     "lodash.merge": "^4.6.2",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "more-entropy": "^0.0.7",
     "nprogress": "^0.2.0",
     "register-service-worker": "^1.6.2",
